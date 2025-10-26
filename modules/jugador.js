@@ -27,7 +27,7 @@ export class Jugador {
      * Se utiliza `structuredClone` para evitar modificar el objeto original.
      * @param {Object} producto - Objeto que se añadirá al inventario.
      */
-    añadirItem(producto) {
+    añadirProducto(producto) {
         this.inventario.push(structuredClone(producto));
     }
 

@@ -7,6 +7,12 @@ import { EUR } from '../utils/utils.js';
  * muestra el producto y aplica descuento sobre él.
  */
 export class Producto {
+    nombre;
+    precio;
+    rareza;
+    tipo;
+    bonus;
+
     /**
    * Crea una nueva instancia de Producto.
    * @param {string} nombre - Nombre del producto.
@@ -30,14 +36,14 @@ export class Producto {
     mostrarProducto(){
         //Para convertir el array bonus (formado por ataque y defensa) en String
         let bonusStr = '';
-        bonus.forEach(i => {
-            bonusStr += `${i}+${this.bonus[i]},`;
-        });
+        for (const clave in this.bonus) {
+            bonusStr += `${clave}+${this.bonus[clave]}, `;
+        }
 
         // Quita la última coma y espacio
-        bonusTexto = bonusTexto.slice(0, -2);
+        bonusStr = bonusStr.slice(0, -2);
 
-        return `${this.nombre} [${this.rareza}] (${this.tipo}) — ${EUR.format(this.precio)} — ${bonusTexto}`;
+        return `${this.nombre} [${this.rareza}] (${this.tipo}) — ${EUR.format(this.precio)} — ${bonusStr}`;
     }
 
     /**

@@ -25,11 +25,9 @@ export function batalla(jugador, enemigo) {
         if (turno === 0) {
             // ataca el jugador
             vidaEnemigo -= dmgJugador;
-            console.log(`El jugador ataca! Daño: ${dmgJugador}. Vida enemigo: ${vidaEnemigo}`);
         } else {
             // ataca el enemigo
             vidaJugador -= dmgEnemigo;
-            console.log(`El enemigo ataca! Daño: ${dmgEnemigo}. Vida jugador: ${vidaJugador}`);
         }
     }
 
@@ -38,9 +36,10 @@ export function batalla(jugador, enemigo) {
     //Si gana jugador
     if (vidaJugador > 0 && vidaEnemigo <= 0) {
         ganaJugador = true;
-        puntosGanados = 50;
+        puntosGanados = 40;
         //Actualizamos los puntos del jugador
         jugador.puntos += puntosGanados;
+        vidaJugador += 50;
     }
 
     //Actualizamos la vida del jugador
@@ -61,6 +60,6 @@ export function batalla(jugador, enemigo) {
  */
 export function calcularNivel(jugador, umbral = 150) {
     const jugadorPro = jugador.puntos >= umbral;
-    return jugadorPro ? "pro" : "rookie";
+    return jugadorPro ? "PRO" : "ROOKIE";
 }
 
