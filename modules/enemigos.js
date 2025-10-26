@@ -1,3 +1,8 @@
+/**
+ * Clase Enemigo
+ * ----------------------------
+ * Construye y muestra un enemigo
+ */
 export class Enemigo {
     nombre;
     ataque;
@@ -12,7 +17,7 @@ export class Enemigo {
     constructor(nombre, ataque) {
         this.nombre = nombre;
         this.ataque = ataque;
-        this.vidaMax = 7;
+        this.vidaMax = 700;
         this.vida = this.vidaMax;
     }
 
