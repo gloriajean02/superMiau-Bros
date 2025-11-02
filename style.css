@@ -1,5 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:black;
+    /* outline: solid red 1px; */
+}
 
-*(
-margin: 0;
-padding: 0;
-)
+header {
+    text-align: center;
+    padding: 20px;
+}
+.logo {
+    max-width: 10rem;
+}
+
+body {
+    background-color:slateblue;
+    color: white;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+main {
+    margin: 0 auto;
+    margin-top: -50px;
+    z-index: -1;
+}
+
+main>div{
+    height: 100%;
+    background-color:wheat;
+    border: solid brown 2px;
+    border-radius: 20px;
+}
+
+button {
+    max-width: fit-content;
+    padding: 5px 10px;
+    background-color: orangered;
+    border: solid brown 3px;
+    border-radius: 10px;
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.5);
+}
+
+#scene-1{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+#scene-1-container {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 5rem;
+    align-items: first baseline;
+    margin: 20px 10px;
+}
+
+.prota {
+    max-width: 10rem;
+}
+
+#parametros-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.parametros {
+    text-align: left;
+}
+
+#inventory-container {
+    background-color:greenyellow;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    padding: 8px;
+    margin: 10px 20%;
+    gap: 4px;
+}
+
+.item {
+    background-color:hotpink;
+    border: 1px solid crimson;
+    aspect-ratio: 1/1;
+}
+
+@media (width < 640px) {
+    #inventory-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

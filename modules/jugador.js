@@ -65,12 +65,12 @@ export class Jugador {
      */
     mostrarJugador() {
         return `
-        🐈‍⬛ ${this.nombre}
-        ❤️ Vida: ${this.vida}/${this.vidaMax}
-        ⭐ Puntos: ${this.puntos}
-        💅🏻 Ataque total: ${this.ataqueTotal}
-        😈 Defensa total: ${this.defensaTotal}
-        🎒 Inventario:  ${this.inventario.length > 0
+        😼 <strong>Nombre:</strong> ${this.nombre}<br>
+        ❤️ <strong>Vida:</strong> ${this.vida}/${this.vidaMax}<br>
+        🎖 <strong>Puntos:</strong> ${this.puntos}<br>
+        💅🏻 <strong>Ataque total:</strong> ${this.ataqueTotal}<br>
+        😈 <strong>Defensa total:</strong> ${this.defensaTotal}<br>
+        🎒 <strong>Inventario:</strong>  ${this.inventario.length > 0
             ? this.inventario.map(item => item.nombre).join(', ')
             : 'Vacío'}
         `;

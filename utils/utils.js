@@ -8,3 +8,43 @@ export const EUR = new Intl.NumberFormat('es-ES', {
     style: 'currency',
     currency: 'EUR'
 });
+
+/**
+ * Genera una rareza aleatoria de producto.
+ * Se usa para determinar qué tipo de productos recibirán descuentos o ventajas aleatorias.
+ * Los valores posibles son:
+ *  - "comun"
+ *  - "raro"
+ *  - "epico"
+ * @returns {string} Rareza aleatoria.
+ */
+export function rarezaRandom() {
+    const random = Math.floor(Math.random() * 3);
+    if (random === 0) {
+        return "comun";
+    } else if (random === 1) {
+        return "raro";
+    } else return "epico";
+};
+
+/**
+ * Genera un porcentaje de descuento aleatorio para el mercado.
+ * Solo puede devolver 10, 20, 30, 40 o 50%.
+ * Se utiliza para simular ofertas aleatorias en los productos del mercado.
+ * @example
+ * descuentoRandom(); // 30 (por ejemplo)
+ * @returns {number} Descuento entero entre 10 y 50.
+ */
+export function descuentoRandom() {
+    return Math.floor(Math.random() * 5) * 10 + 10;
+};
+
+/**
+ * Muestra en consola cada elemento de un array usando una función de presentación.
+ * @param {Array} array - Array de objetos a mostrar.
+ * @param {function} mostrarFunc - Función que devuelve un string representando cada elemento.
+ */
+export function mostrarArray(array, mostrarFunc) {
+    array.forEach(item => console.log(mostrarFunc(item)));
+}
+

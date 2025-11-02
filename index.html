@@ -1,15 +1,40 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang='es'>
 <head>
-    <title>Super Miau Bros</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="main.js" type="module" defer></script>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>SuperMiau-Bros</title>
+    <link rel='stylesheet' href="style.css">
+    <script type="module" src="main.js" defer></script>
 </head>
-
 <body>
-    <h1>Acceder a la consola para visualizar</h1>
+    <header>
+        <img src="imagenes/logo.png" class="logo" alt="SuperMiau-Bros">
+    </header>
+    <main>  
+        <div id="scene-1" class="scene">
+            <div id="scene-1-container">
+                <div id="personaje">
+                    <p><em>PLAYER</em></p>
+                    <img src="imagenes/prota.png" class="prota" alt="jugador">
+                </div>
+                <div id="parametros-container">
+                    <p><em>PARÁMETROS</em></p>
+                </div> 
+            </div>
+            <button id="continuar">Continuar</button>
+        </div>
+    </main>
+    <footer>
+        <div id="inventory-container">
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+            <div class="item"></div>
+        </div>
+    </footer>
 </body>
-
 </html>
+

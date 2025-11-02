@@ -2,23 +2,31 @@ import { Jugador } from "./modules/jugador.js";
 import { Enemigo } from "./modules/enemigos.js";
 import { mercado, aplicarDescuentoPorRareza } from "./modules/mercado.js";
 import { batalla, calcularNivel } from "./modules/batalla.js";
+import { rarezaRandom, descuentoRandom, mostrarArray } from './utils/utils.js';
 
-console.log("\n🐈‍⬛ SUPERMIAU BROS 🐈‍⬛");
 const jugador = new Jugador('Simba');
+
+const parametrosContainer = document.getElementById("parametros-container");
+const divParametros = document.createElement("div");
+divParametros.innerHTML = jugador.mostrarJugador();
+divParametros.classList.add("parametros");
+parametrosContainer.appendChild(divParametros);
+
 
 console.log(jugador.mostrarJugador());
 
 console.log("\n🛍 MERCADO 🛍");
-mercado.forEach(producto => {
-    console.log(producto.mostrarProducto());
-});
+
+mostrarArray(mercado, producto => producto.mostrarProducto());
 
 console.log("\n🛍 MERCADO CON DESCUENTO 🛍");
-const mercadoConDescuento = aplicarDescuentoPorRareza("comun", 20);
 
-mercadoConDescuento.forEach(producto => {
-    console.log(producto.mostrarProducto());
-});
+const rareza = rarezaRandom();
+const descuento = descuentoRandom();
+
+const mercadoConDescuento = aplicarDescuentoPorRareza(rareza, descuento);
+
+mostrarArray(mercadoConDescuento, producto => producto.mostrarProducto());
 
 console.log("\n💅🏻 "+jugador.nombre+" ha actulizado su inventario: ");
 jugador.añadirProducto(mercado[3]);
@@ -33,9 +41,8 @@ const enemigoTransportin = new Enemigo('Transportín', 4);
 
 const arrayEnemigos = [enemigoBolaPelo, enemigoGatoMalvado, enemigoMiReflejo, 
                         enemigoPepino, enemigoPerroBobo, enemigoTransportin];
-arrayEnemigos.forEach(enemigo => {
-    console.log(enemigo.mostrarEnemigo());
-});
+
+mostrarArray(arrayEnemigos, enemigo => enemigo.mostrarEnemigo());
 
 console.log("\n¡Comienzan las batallas!");
 console.log("💥 RONDA 1 ");
