@@ -10,6 +10,7 @@
 header {
     text-align: center;
     padding: 20px;
+    z-index: 2;
 }
 .logo {
     max-width: 10rem;
@@ -27,7 +28,6 @@ body {
 main {
     margin: 0 auto;
     margin-top: -50px;
-    z-index: -1;
 }
 
 main>div{
@@ -47,7 +47,7 @@ button {
 }
 
 button:hover {
-    transform: scale(1.5);
+    transform: scale(1.05);
 }
 
 .scene{
@@ -152,9 +152,13 @@ button:hover {
 }
 
 .item {
-    padding: 50px;
+    display: flex;
     background-color:rgb(218, 230, 233);
     aspect-ratio: 1/1;
+    overflow:hidden;
     border-radius: 10px;
 }
 
+.comprado {
+    background-color:brown;
+}
