@@ -8,17 +8,19 @@ export class Enemigo {
     ataque;
     vidaMax;
     vida;
+    imagen;
 
     /**
      * Crea una nueva instancia de Enemigo.
      * @param {string} nombre - Nombre del enemigo.
      * @param {number} ataque - Nivel de ataque del enemigo.
      */
-    constructor(nombre, ataque) {
+    constructor(nombre, ataque, imagen) {
         this.nombre = nombre;
         this.ataque = ataque;
         this.vidaMax = 700;
         this.vida = this.vidaMax;
+        this.imagen = imagen;
     }
 
     /**

@@ -39,7 +39,7 @@ export function describirProducto(producto) {
     return producto.mostrarProducto();
 }
 
-export function mostrarMercado(mercado, mercadoDiv, rarezaAleatoria, descuentoAleatorio, inventario, jugador) {
+export function mostrarMercado(mercado, mercadoDiv, rarezaAleatoria, descuentoAleatorio, arrayInventario, jugador) {
     mercado.forEach(producto => {
         // Contenedor de cada producto
         const productoDiv = document.createElement("div");
@@ -76,9 +76,6 @@ export function mostrarMercado(mercado, mercadoDiv, rarezaAleatoria, descuentoAl
             infoDiv.appendChild(descuento);
         }
     
-        
-    
-        // infoDiv.appendChild(img);
         infoDiv.appendChild(img);
         infoDiv.appendChild(nombre);
         infoDiv.appendChild(rareza);
@@ -92,34 +89,28 @@ export function mostrarMercado(mercado, mercadoDiv, rarezaAleatoria, descuentoAl
     
         const botonComprar = document.createElement("button");
         botonComprar.classList.add("botonComprar");
-        //El id único de cada artículo es su nombre en minúsculas y los espacios se sustituyen por _
-        botonComprar.id = producto.nombre.toLowerCase().replace(/\s+/g, "_");;
-        botonComprar.innerHTML = "Comprar";
+        botonComprar.innerHTML = "Añadir";
     
         comprarDiv.appendChild(botonComprar);
 
-
-
-        const elemento = document.createElement("div");
-        elemento.classList.add("item");
-        inventario.appendChild(elemento);
-    
-
         // Listener para la compra
         botonComprar.addEventListener("click", () => {
-            // Cambiar color del container producto
-            productoDiv.style.backgroundColor = "#d4fcd4";
+            if (arrayInventario.includes(producto)) {
+                botonComprar.innerHTML = 'Añadir';
+                productoDiv.style.backgroundColor = "rgba(255, 252, 249, 0.649)";
 
-            productoDiv.classList.add('comprado');
-            
-            img.classList.add('inventario');
+                const i = arrayInventario.findIndex(p => p === producto);
+                arrayInventario.splice(i, 1);
 
-            const imgInventario = document.createElement("img");
-            imgInventario.src = "imagenes/"+producto.imagen;
-            elemento.appendChild(imgInventario);
+                const j = jugador.inventario.findIndex(p => p === producto);
+                jugador.inventario.splice(j, 1);
 
-            jugador.añadirProducto(mercado[i]);
-
+            } else {
+                botonComprar.innerHTML = 'Añadido';
+                productoDiv.style.backgroundColor = "#d4fcd4";
+                arrayInventario.push(producto);
+                jugador.añadirProducto(producto);
+            }
         });
     
         // Unir info y botón al producto

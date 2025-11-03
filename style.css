@@ -162,3 +162,30 @@ button:hover {
 .comprado {
     background-color:brown;
 }
+
+/* ------------- ESCENA 4 --------------- */
+
+.imgEnemigo {
+    max-width: 8rem;
+    border-radius: 20px;
+}
+
+.scene-4-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 10px;
+    width: 100%;
+}
+
+.enemigos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
