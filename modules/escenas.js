@@ -1,8 +1,9 @@
 import { rarezaRandom, descuentoRandom } from '../utils/utils.js';
-import { aplicarDescuentoPorRareza, mostrarMercado } from "./mercado.js";
-import { Enemigo } from "./enemigos.js";
+import { aplicarDescuentoPorRareza, mostrarProductosMercado } from "./mercado.js";
+import { batalla } from "./batalla.js";
 
-export function mostrarEscena1(escena, jugador) {
+
+export function mostrarJugador(escena, jugador) {
     const escena1 = document.createElement("div");
     escena1.classList.add("scene-1-container");
 
@@ -40,7 +41,7 @@ export function mostrarEscena1(escena, jugador) {
 
 }
 
-export function mostrarEscena2(escena, jugador) {
+export function mostrarMercado(escena, jugador) {
     const escena2 = document.createElement("div");
     escena2.classList.add("scene-2-container");
 
@@ -64,7 +65,7 @@ export function mostrarEscena2(escena, jugador) {
     const arrayInventario = [];
 
     //Función mostrarMercado de la clase mercado.js
-    mostrarMercado(mercadoConDescuento, mercadoDiv, rarezaAleatoria, descuentoAleatorio, arrayInventario, jugador);
+    mostrarProductosMercado(mercadoConDescuento, mercadoDiv, rarezaAleatoria, descuentoAleatorio, arrayInventario, jugador);
 
     for (let i = 0; i < 6; i++) {
         const elemento = document.createElement("div");
@@ -76,23 +77,13 @@ export function mostrarEscena2(escena, jugador) {
     escena.appendChild(escena2);
 }
 
-export function mostrarEscena4(escena, jugador) {
+export function mostrarEnemigos(escena, arrayEnemigos) {
     const escena4 = document.createElement("div");
     escena4.classList.add("scene-4-container");
 
     // Contenedor del mercado
     const enemigosDiv = document.createElement("div");
     enemigosDiv.classList.add("enemigos");
-
-    const enemigoPepino = new Enemigo('Pepino', 5, 'pepino.jpg');
-    const enemigoGatoMalvado = new Enemigo('Gato malvado', 3, 'gatoMalvado.jpg');
-    const enemigoPerroBobo = new Enemigo('Perro bobo', 2, 'perroBobo.jpg');
-    const enemigoBolaPelo = new Enemigo('Bola de pelo', 1, 'bolaPelo.jpg');
-    const enemigoMiReflejo = new Enemigo('Mi reflejo', jugador.ataqueTotal, 'espejo.jpg');
-    const enemigoTransportin = new Enemigo('Transportín', 4, 'transportin.jpg');
-
-    const arrayEnemigos = [enemigoBolaPelo, enemigoGatoMalvado, enemigoMiReflejo,
-        enemigoPepino, enemigoPerroBobo, enemigoTransportin];
 
     arrayEnemigos.forEach(enemigo => {
         // Contenedor de cada enemigo
@@ -123,4 +114,45 @@ export function mostrarEscena4(escena, jugador) {
     // Montar escena
     escena4.appendChild(enemigosDiv);
     escena.appendChild(escena4);
+}
+
+export function pelear(escena, arrayEnemigos, jugador) {
+    const escena5 = document.createElement("div");
+    escena5.classList.add("scene-5-container");
+
+    // Contenedor del mercado
+    const peleaDiv = document.createElement("div");
+    peleaDiv.classList.add("pelea");
+
+    const i = Math.floor(Math.random() * arrayEnemigos.length);
+    const enemigoAleatorio = arrayEnemigos[i];
+
+    const enemigoDiv = document.createElement("div");
+    enemigoDiv.classList.add("enemigoPeleaDiv");
+
+    const personajeDiv = document.createElement("div");
+    personajeDiv.classList.add("personajePeleaDiv");
+
+    const imgEnemigo = document.createElement("img");
+    imgEnemigo.src = "imagenes/" + enemigoAleatorio.imagen;
+    imgEnemigo.classList.add("imgEnemigo");
+
+    const imgPersonaje = document.createElement("img");
+    imgPersonaje.src = "imagenes/prota.png";
+    imgPersonaje.classList.add("prota");
+
+    personajeDiv.appendChild(imgPersonaje);
+    enemigoDiv.appendChild(imgEnemigo);
+    peleaDiv.appendChild(personajeDiv);
+    peleaDiv.appendChild(enemigoDiv);
+
+    const resultado = batalla(jugador,enemigoAleatorio);
+    const pResultado = document.createElement("h2");
+    pResultado.classList.add('resultado');
+    pResultado.innerHTML = resultado;
+
+    escena5.appendChild(pResultado);
+    escena5.appendChild(peleaDiv);
+    escena.appendChild(escena5);
+
 }

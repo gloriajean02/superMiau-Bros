@@ -163,7 +163,7 @@ button:hover {
     background-color:brown;
 }
 
-/* ------------- ESCENA 4 --------------- */
+/* ------------- ESCENA ENEMIGOS --------------- */
 
 .imgEnemigo {
     max-width: 8rem;
@@ -188,4 +188,13 @@ button:hover {
     gap: 2rem;
     align-items: center;
     justify-content: center;
+}
+
+/* ------------- ESCENA PELEA --------------- */
+
+.pelea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
 }

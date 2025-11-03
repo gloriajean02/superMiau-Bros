@@ -39,7 +39,7 @@ export function describirProducto(producto) {
     return producto.mostrarProducto();
 }
 
-export function mostrarMercado(mercado, mercadoDiv, rarezaAleatoria, descuentoAleatorio, arrayInventario, jugador) {
+export function mostrarProductosMercado(mercado, mercadoDiv, rarezaAleatoria, descuentoAleatorio, arrayInventario, jugador) {
     mercado.forEach(producto => {
         // Contenedor de cada producto
         const productoDiv = document.createElement("div");
