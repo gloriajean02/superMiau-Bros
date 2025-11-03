@@ -19,8 +19,9 @@ body {
     background-color:slateblue;
     color: white;
     min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
 }
 
 main {
@@ -37,10 +38,10 @@ main>div{
 }
 
 button {
-    max-width: fit-content;
+    width: 100%;
     padding: 5px 10px;
-    background-color: orangered;
-    border: solid brown 3px;
+    background-color:blueviolet;
+    border: solid orangered 1px;
     border-radius: 10px;
     color: white;
 }
@@ -49,16 +50,19 @@ button:hover {
     transform: scale(1.5);
 }
 
-#scene-1{
+.scene{
     padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
     align-items: center;
+    max-width: 900px;
 }
 
-#scene-1-container {
+/* ------------- ESCENA 1 --------------- */
+
+.scene-1-container {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -72,33 +76,85 @@ button:hover {
     max-width: 10rem;
 }
 
-#parametros-container {
+.parametros-container {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .parametros {
     text-align: left;
 }
 
+/* ------------- ESCENA 2 --------------- */
+
+.scene-2-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 10px;
+    width: 100%;
+}
+
+.mercado {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.producto {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 320px;
+    min-width: 250px;
+    padding: 10px;
+    border: solid orangered 2px;
+    border-radius: 10px;
+    background-color:rgba(255, 252, 249, 0.649);
+}
+.imgProducto {
+    max-width: 8rem;
+    border-radius: 20px;
+}
+
+#conDescuento {
+    background-color:rgb(167, 194, 245);
+}
+
+.descuento {
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.comprarProducto {
+    margin-top: 10px;
+}
+
+.botonComprar {
+    background-color: brown;
+}
+
 #inventory-container {
-    background-color:greenyellow;
+    background-color:orangered;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     padding: 8px;
     margin: 10px 20%;
     gap: 4px;
+    border-radius: 10px;
 }
 
 .item {
-    background-color:hotpink;
-    border: 1px solid crimson;
+    padding: 50px;
+    background-color:rgb(218, 230, 233);
     aspect-ratio: 1/1;
+    border-radius: 10px;
 }
 
-@media (width < 640px) {
-    #inventory-container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}

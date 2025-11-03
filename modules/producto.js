@@ -12,6 +12,7 @@ export class Producto {
     rareza;
     tipo;
     bonus;
+    imagen;
 
     /**
    * Crea una nueva instancia de Producto.
@@ -20,13 +21,15 @@ export class Producto {
    * @param {string} rareza - Nivel de rareza ("común", "raro", "épico").
    * @param {string} tipo - Tipo de producto ("distracción", "sorpresa", "estrategia").
    * @param {Object} bonus - Objeto con los bonus del producto, por ejemplo { ataque: 5, defensa: 2 }.
+   * @param {string} imagen - Nombre de la imagen de producto, es el mismo que el nombre del producto pero con _
    */
-    constructor(nombre, precio, rareza, tipo, bonus) {
+    constructor(nombre, precio, rareza, tipo, bonus, imagen) {
     this.nombre = nombre;
     this.precio = precio;
     this.rareza = rareza;
     this.tipo = tipo;
     this.bonus = bonus;
+    this.imagen = imagen;
     }
     
     /**
@@ -43,7 +46,23 @@ export class Producto {
         // Quita la última coma y espacio
         bonusStr = bonusStr.slice(0, -2);
 
-        return `${this.nombre} [${this.rareza}] (${this.tipo}) — ${EUR.format(this.precio)} — ${bonusStr}`;
+        return `${this.nombre} [${this.rareza}] (${this.tipo}) — ${EUR.format(this.precio)} — ${bonusStr} — ${this.imagen}`;
+    }
+
+    /**
+     * Devuelve una representación en texto del bonus.
+     * @returns {string} Descripción del bonus.
+     */
+    mostrarBonus(){
+        let bonusStr = '';
+        for (const clave in this.bonus) {
+            bonusStr += `${clave}+${this.bonus[clave]}, `;
+        }
+
+        // Quita la última coma y espacio
+        bonusStr = bonusStr.slice(0, -2);
+
+        return `${bonusStr}`;
     }
 
     /**
@@ -59,7 +78,7 @@ export class Producto {
         // Calcula el nuevo precio (Ejemplo: 200 * (1 - 0.25))
         const nuevoPrecio = Math.round(this.precio * (1 - porcentaje / 100));
 
-        return new Producto(this.nombre, nuevoPrecio, this.rareza, this.tipo, this.bonus);
+        return new Producto(this.nombre, nuevoPrecio, this.rareza, this.tipo, this.bonus, this.imagen);
     }
 }
 

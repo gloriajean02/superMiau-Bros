@@ -29,14 +29,14 @@ export function rarezaRandom() {
 
 /**
  * Genera un porcentaje de descuento aleatorio para el mercado.
- * Solo puede devolver 10, 20, 30, 40 o 50%.
+ * Solo puede devolver numeros de 10 en 10.
  * Se utiliza para simular ofertas aleatorias en los productos del mercado.
  * @example
  * descuentoRandom(); // 30 (por ejemplo)
- * @returns {number} Descuento entero entre 10 y 50.
+ * @returns {number} Descuento entero entre 10 y 100.
  */
 export function descuentoRandom() {
-    return Math.floor(Math.random() * 5) * 10 + 10;
+    return Math.floor(Math.random() * 10) *10 + 10;
 };
 
 /**
