@@ -69,6 +69,10 @@ export function mostrarEnemigos(escena, arrayEnemigos) {
     const escena4 = document.createElement("div");
     escena4.classList.add("scene-4-container");
 
+    const pEnemigos = document.createElement('p');
+    pEnemigos.innerHTML = "<em>ENEMIGOS</em>";
+    escena4.appendChild(pEnemigos);
+    
     // Contenedor del mercado
     const enemigosDiv = document.createElement("div");
     enemigosDiv.classList.add("enemigos");
