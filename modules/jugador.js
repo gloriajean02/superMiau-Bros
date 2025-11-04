@@ -75,4 +75,5 @@ export class Jugador {
             : 'Vacío'}
         `;
     }
+
 }
