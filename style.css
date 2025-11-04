@@ -2,8 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
     /* outline: solid red 1px; */
 }
 
@@ -12,12 +12,13 @@ header {
     padding: 20px;
     z-index: 2;
 }
+
 .logo {
     max-width: 10rem;
 }
 
 body {
-    background-color:slateblue;
+    background-color: slateblue;
     color: white;
     min-height: 100vh;
     display: flex;
@@ -30,9 +31,9 @@ main {
     margin-top: -50px;
 }
 
-main>div{
+main>div {
     height: 100%;
-    background-color:wheat;
+    background-color: wheat;
     border: solid brown 2px;
     border-radius: 20px;
 }
@@ -40,7 +41,7 @@ main>div{
 button {
     width: 100%;
     padding: 5px 10px;
-    background-color:blueviolet;
+    background-color: blueviolet;
     border: solid orangered 1px;
     border-radius: 10px;
     color: white;
@@ -50,7 +51,7 @@ button:hover {
     transform: scale(1.05);
 }
 
-.scene{
+.scene {
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -117,15 +118,16 @@ button:hover {
     padding: 10px;
     border: solid orangered 2px;
     border-radius: 10px;
-    background-color:rgba(255, 252, 249, 0.649);
+    background-color: rgba(255, 252, 249, 0.649);
 }
+
 .imgProducto {
     max-width: 8rem;
     border-radius: 20px;
 }
 
 #conDescuento {
-    background-color:rgb(167, 194, 245);
+    background-color: rgb(167, 194, 245);
 }
 
 .descuento {
@@ -142,7 +144,7 @@ button:hover {
 }
 
 #inventory-container {
-    background-color:orangered;
+    background-color: orangered;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     padding: 8px;
@@ -152,15 +154,24 @@ button:hover {
 }
 
 .item {
+    width: 80px;
+    height: 80px;
+    border: 2px dashed #bbb;
     display: flex;
-    background-color:rgb(218, 230, 233);
-    aspect-ratio: 1/1;
-    overflow:hidden;
-    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    background: #f8f8f8;
+    overflow: hidden;
+}
+
+.item img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
 }
 
 .comprado {
-    background-color:brown;
+    background-color: brown;
 }
 
 /* ------------- ESCENA ENEMIGOS --------------- */

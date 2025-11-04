@@ -57,23 +57,11 @@ export function mostrarMercado(escena, jugador) {
     // Montar escena
     escena2.appendChild(mercadoDiv);
 
-    // Inventario
-
-    const inventario = document.createElement("div");
-    inventario.id = "inventory-container";
-
     const arrayInventario = [];
 
     //Función mostrarMercado de la clase mercado.js
     mostrarProductosMercado(mercadoConDescuento, mercadoDiv, rarezaAleatoria, descuentoAleatorio, arrayInventario, jugador);
 
-    for (let i = 0; i < 6; i++) {
-        const elemento = document.createElement("div");
-        elemento.classList.add("item");
-        inventario.appendChild(elemento);
-    }
-
-    escena2.appendChild(inventario);
     escena.appendChild(escena2);
 }
 
@@ -146,7 +134,7 @@ export function pelear(escena, arrayEnemigos, jugador) {
     peleaDiv.appendChild(personajeDiv);
     peleaDiv.appendChild(enemigoDiv);
 
-    const resultado = batalla(jugador,enemigoAleatorio);
+    const resultado = batalla(jugador, enemigoAleatorio);
     const pResultado = document.createElement("h2");
     pResultado.classList.add('resultado');
     pResultado.innerHTML = resultado;

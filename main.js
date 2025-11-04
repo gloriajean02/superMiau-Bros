@@ -115,7 +115,7 @@ botonReload.innerHTML = "Volver a empezar";
 continuarEscena8.addEventListener("click", () => {
     escena.replaceChildren();
     const resultado = calcularNivel(jugador);
-    const pPuntos = "<em>Puntos totales: </em> +"+jugador.puntos;+"ptos."
+    const pPuntos = "<em>Puntos totales: </em> +" + jugador.puntos; +"ptos."
     const pResultado = jugador.nombre + " es " + resultado + " 🔥 ";
     const p = document.createElement('p');
     const h2 = document.createElement('h2');
