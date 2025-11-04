@@ -58,7 +58,7 @@ export function batalla(jugador, enemigo) {
  * @param {number} [umbral=150] - Puntos mínimos para ser "pro", por defecto 150.
  * @returns {string} Nivel del jugador.
  */
-export function calcularNivel(jugador, umbral = 150) {
+export function calcularNivel(jugador, umbral = 80) {
     const jugadorPro = jugador.puntos >= umbral;
     return jugadorPro ? "PRO" : "ROOKIE";
 }

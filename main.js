@@ -11,38 +11,38 @@ const jugador = new Jugador('Simba');
 // ---------------------------------- ESCENA JUGADOR --------------------------------------- //
 mostrarJugador(escena, jugador);
 
-const continuarEscena2 = document.createElement("button");
-continuarEscena2.type = "button";
-continuarEscena2.id = "continuarEscena2";
-continuarEscena2.innerHTML = "Continuar";
+const continuarMercado = document.createElement("button");
+continuarMercado.type = "button";
+continuarMercado.id = "continuarMercado";
+continuarMercado.innerHTML = "Continuar";
 
-escena.appendChild(continuarEscena2);
+escena.appendChild(continuarMercado);
 
 // ---------------------------------- ESCENA MERCADO --------------------------------------- //
 
 
-const continuarEscena3 = document.createElement("button");
-continuarEscena3.type = "button";
-continuarEscena3.id = "continuarEscena3";
-continuarEscena3.innerHTML = "Comprar";
+const continuarCompra = document.createElement("button");
+continuarCompra.type = "button";
+continuarCompra.id = "continuarCompra";
+continuarCompra.innerHTML = "Comprar";
 
-continuarEscena2.addEventListener("click", () => {
+continuarMercado.addEventListener("click", () => {
     escena.replaceChildren();
     mostrarMercado(escena, jugador);
-    escena.appendChild(continuarEscena3);
+    escena.appendChild(continuarCompra);
 });
 
 // ------------------------- ESCENA JUGADOR CON NUEVO INVENTARIO --------------------------- //
 
-const continuarEscena4 = document.createElement("button");
-continuarEscena4.type = "button";
-continuarEscena4.id = "continuarEscena4";
-continuarEscena4.innerHTML = "Continuar";
+const continuarEnemigos = document.createElement("button");
+continuarEnemigos.type = "button";
+continuarEnemigos.id = "continuarEnemigos";
+continuarEnemigos.innerHTML = "Continuar";
 
-continuarEscena3.addEventListener("click", () => {
+continuarCompra.addEventListener("click", () => {
     escena.replaceChildren();
     mostrarJugador(escena, jugador)
-    escena.appendChild(continuarEscena4);
+    escena.appendChild(continuarEnemigos);
 });
 
 // ---------------------------------- ESCENA ENEMIGOS --------------------------------------- //
@@ -56,53 +56,53 @@ const enemigoTransportin = new Enemigo('Transportín', 4, 'transportin.jpg');
 const arrayEnemigos = [enemigoBolaPelo, enemigoGatoMalvado, enemigoMiReflejo,
     enemigoPepino, enemigoPerroBobo, enemigoTransportin];
 
-const continuarEscena5 = document.createElement("button");
-continuarEscena5.type = "button";
-continuarEscena5.id = "continuarEscena5";
-continuarEscena5.innerHTML = "Iniciar pelea 1";
+const continuarPelea = document.createElement("button");
+continuarPelea.type = "button";
+continuarPelea.id = "continuarPelea";
+continuarPelea.innerHTML = "Iniciar batalla 1";
 
-continuarEscena4.addEventListener("click", () => {
+continuarEnemigos.addEventListener("click", () => {
     escena.replaceChildren();
     mostrarEnemigos(escena, arrayEnemigos);
-    escena.appendChild(continuarEscena5);
+    escena.appendChild(continuarPelea);
 });
 
 // ---------------------------------- ESCENAS PELEA --------------------------------------- //
 
 // PELEA 1
-const continuarEscena6 = document.createElement("button");
-continuarEscena6.type = "button";
-continuarEscena6.id = "continuarEscena6";
-continuarEscena6.innerHTML = "Iniciar pelea 2";
+const continuarPelea1 = document.createElement("button");
+continuarPelea1.type = "button";
+continuarPelea1.id = "continuarPelea1";
+continuarPelea1.innerHTML = "Iniciar batalla 2";
 
-continuarEscena5.addEventListener("click", () => {
+continuarPelea.addEventListener("click", () => {
     escena.replaceChildren();
     pelear(escena, arrayEnemigos, jugador);
-    escena.appendChild(continuarEscena6);
+    escena.appendChild(continuarPelea1);
 });
 
 // PELEA 2
-const continuarEscena7 = document.createElement("button");
-continuarEscena7.type = "button";
-continuarEscena7.id = "continuarEscena7";
-continuarEscena7.innerHTML = "Iniciar pelea 3";
+const continuarPelea2 = document.createElement("button");
+continuarPelea2.type = "button";
+continuarPelea2.id = "continuarPelea2";
+continuarPelea2.innerHTML = "Iniciar batalla 3";
 
-continuarEscena6.addEventListener("click", () => {
+continuarPelea1.addEventListener("click", () => {
     escena.replaceChildren();
     pelear(escena, arrayEnemigos, jugador);
-    escena.appendChild(continuarEscena7);
+    escena.appendChild(continuarPelea2);
 });
 
 // PELEA 3
-const continuarEscena8 = document.createElement("button");
-continuarEscena8.type = "button";
-continuarEscena8.id = "continuarEscena8";
-continuarEscena8.innerHTML = "Resultados";
+const continuarPelea3 = document.createElement("button");
+continuarPelea3.type = "button";
+continuarPelea3.id = "continuarPelea3";
+continuarPelea3.innerHTML = "Resultados";
 
-continuarEscena7.addEventListener("click", () => {
+continuarPelea2.addEventListener("click", () => {
     escena.replaceChildren();
     pelear(escena, arrayEnemigos, jugador);
-    escena.appendChild(continuarEscena8);
+    escena.appendChild(continuarPelea3);
 });
 
 // ---------------------------------- ESCENA RESULTADO --------------------------------------- //
@@ -112,7 +112,7 @@ botonReload.type = "button";
 botonReload.id = "botonReload";
 botonReload.innerHTML = "Volver a empezar";
 
-continuarEscena8.addEventListener("click", () => {
+continuarPelea3.addEventListener("click", () => {
     escena.replaceChildren();
     const resultado = calcularNivel(jugador);
     const pPuntos = "<em>Puntos totales: </em> +" + jugador.puntos; +"ptos."
