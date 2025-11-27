@@ -1,3 +1,6 @@
+import { Jefe } from "./jefe.js";
+import { PUNTOS_BASE_VICTORIA } from "../constants.js";
+
 /**
  * Módulo de Batalla y Nivel
  * ----------------------------
@@ -13,21 +16,23 @@
  * @returns {string} Resultado con el nombre del ganador y los puntos ganados.
  */
 export function batalla(jugador, enemigo) {
-    let vidaJugador = jugador.vida;
+    let vidaJugador = jugador.vidaTotal;
     let vidaEnemigo = enemigo.vida;
 
     const dmgJugador = jugador.ataqueTotal;
-    const dmgEnemigo = Math.max(1, enemigo.ataque - jugador.defensaTotal);
+    const dmgEnemigo = enemigo.ataque;
+
+    const defensaJugador = jugador.defensaTotal;
 
     while (vidaJugador > 0 && vidaEnemigo > 0) {
         // turno aleatorio: 0 → jugador, 1 → enemigo
         const turno = Math.floor(Math.random() * 2);
         if (turno === 0) {
             // ataca el jugador
-            vidaEnemigo -= dmgJugador;
+            vidaEnemigo = vidaEnemigo - dmgJugador;
         } else {
             // ataca el enemigo
-            vidaJugador -= dmgEnemigo;
+            vidaJugador = (vidaJugador + defensaJugador) - dmgEnemigo;
         }
     }
 
@@ -36,30 +41,17 @@ export function batalla(jugador, enemigo) {
     //Si gana jugador
     if (vidaJugador > 0 && vidaEnemigo <= 0) {
         ganaJugador = true;
-        puntosGanados = 40;
-        //Actualizamos los puntos del jugador
-        jugador.puntos += puntosGanados;
-        vidaJugador += 50;
+        puntosGanados = PUNTOS_BASE_VICTORIA + dmgEnemigo;
+        if (enemigo instanceof Jefe) {
+            puntosGanados = enemigo.multiplicarDmg(puntosGanados);
+        }
+        //Actualizamos los puntos y la vida del jugador
+        jugador.ganarBatalla(puntosGanados);
     }
-
-    //Actualizamos la vida del jugador
-    jugador.vida = Math.max(1, vidaJugador);
 
     return `Ganador: ${ganaJugador ? jugador.nombre : enemigo.nombre}, Puntos ganados: +${puntosGanados} pts`;
 
 }
 
-/**
- * Decide el nivel del jugador:
- * - "pro" si supera el umbral.
- * - "rookie" si no lo alcanza.
- *
- * @param {Jugador} jugador - Jugador participante.
- * @param {number} [umbral=150] - Puntos mínimos para ser "pro", por defecto 150.
- * @returns {string} Nivel del jugador.
- */
-export function calcularNivel(jugador, umbral = 80) {
-    const jugadorPro = jugador.puntos >= umbral;
-    return jugadorPro ? "PRO" : "ROOKIE";
-}
+
 

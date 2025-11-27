@@ -1,7 +1,7 @@
-import { rarezaRandom, descuentoRandom, EUR } from '../utils/utils.js';
-import { aplicarDescuentoPorRareza, actualizarInventario } from "./mercado.js";
-import { batalla } from "./batalla.js";
 
+import { aplicarDescuentoPorRareza, rarezaRandom, descuentoRandom, actualizarInventario } from "./mercado.js";
+import { batalla } from "./batalla.js";
+import { INVENTARIO_MAX } from "../constants.js";
 
 
 export function mostrarJugador(escena, jugador) {
@@ -64,7 +64,7 @@ export function mostrarMercado(escena, jugador) {
     inventario.id = "inventory-container";
 
     //Crear 6 items para el inventario
-    for (let i = 0; i < 6; i++) { 
+    for (let i = 0; i < INVENTARIO_MAX; i++) { 
         const elemento = document.createElement("div"); 
         elemento.classList.add("item"); 
         inventario.appendChild(elemento); 
@@ -78,6 +78,7 @@ export function mostrarMercado(escena, jugador) {
     // --- MERCADO ---
     mercadoConDescuento.forEach(producto => {
         const productoDiv = document.createElement("div");
+
         productoDiv.classList.add("producto");
 
         // Info del producto
@@ -101,7 +102,7 @@ export function mostrarMercado(escena, jugador) {
         bonus.innerHTML = "<em>Bonus: </em>" + producto.mostrarBonus();
 
         const precio = document.createElement("p");
-        precio.innerHTML = EUR.format(producto.precio);
+        precio.innerHTML = producto.precioEuros;
 
         if (producto.rareza === rarezaAleatoria) {
             productoDiv.id = "conDescuento";
@@ -137,12 +138,12 @@ export function mostrarMercado(escena, jugador) {
                 jugador.inventario.splice(j, 1);
             } else {
                 // añadir al inventario y al jugador
-                if (arrayInventario.length >= 6) {
+                if (arrayInventario.length >= INVENTARIO_MAX) {
                     alert("Inventario lleno");
                     return;
                 }
 
-                botonComprar.innerHTML = 'Añadido';
+                botonComprar.innerHTML = 'Retirar';
                 productoDiv.style.backgroundColor = "#d4fcd4";
                 arrayInventario.push(producto);
                 jugador.añadirProducto(producto);
@@ -182,7 +183,7 @@ export function mostrarEnemigos(escena, arrayEnemigos) {
         infoDiv.classList.add("infoEnemigo");
 
         const img = document.createElement("img");
-        img.src = "imagenes/" + enemigo.imagen;
+        img.src = "imagenes/" + enemigo.avatar;
         img.classList.add("imgEnemigo");
 
         const nombre = document.createElement("p");
@@ -222,7 +223,7 @@ export function pelear(escena, arrayEnemigos, jugador) {
     personajeDiv.classList.add("personajePeleaDiv");
 
     const imgEnemigo = document.createElement("img");
-    imgEnemigo.src = "imagenes/" + enemigoAleatorio.imagen;
+    imgEnemigo.src = "imagenes/" + enemigoAleatorio.avatar;
     imgEnemigo.classList.add("imgEnemigo");
 
     const imgPersonaje = document.createElement("img");

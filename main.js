@@ -1,6 +1,7 @@
 import { Jugador } from "./modules/jugador.js";
 import { Enemigo } from "./modules/enemigos.js";
-import { calcularNivel } from "./modules/batalla.js";
+import { Jefe } from "./modules/jefe.js";
+import { calcularNivel } from "./modules/ranking.js";
 import { mostrarMercado, mostrarJugador, mostrarEnemigos, pelear } from "./modules/escenas.js";
 
 
@@ -45,23 +46,28 @@ continuarCompra.addEventListener("click", () => {
     escena.appendChild(continuarEnemigos);
 });
 
-// ---------------------------------- ESCENA ENEMIGOS --------------------------------------- //
-const enemigoPepino = new Enemigo('Pepino', 5, 'pepino.jpg');
-const enemigoGatoMalvado = new Enemigo('Gato malvado', 3, 'gatoMalvado.jpg');
-const enemigoPerroBobo = new Enemigo('Perro bobo', 2, 'perroBobo.jpg');
-const enemigoBolaPelo = new Enemigo('Bola de pelo', 1, 'bolaPelo.jpg');
-const enemigoMiReflejo = new Enemigo('Mi reflejo', jugador.ataqueTotal, 'espejo.jpg');
-const enemigoTransportin = new Enemigo('Transportín', 4, 'transportin.jpg');
+console.log(jugador.mostrarJugador())
 
-const arrayEnemigos = [enemigoBolaPelo, enemigoGatoMalvado, enemigoMiReflejo,
-    enemigoPepino, enemigoPerroBobo, enemigoTransportin];
+// ---------------------------------- ESCENA ENEMIGOS --------------------------------------- //
+
 
 const continuarPelea = document.createElement("button");
 continuarPelea.type = "button";
 continuarPelea.id = "continuarPelea";
 continuarPelea.innerHTML = "Iniciar batalla 1";
 
+let arrayEnemigos = [];
 continuarEnemigos.addEventListener("click", () => {
+
+    const enemigoPepino = new Enemigo('Pepino', 5, 'pepino.jpg');
+    const enemigoGatoMalvado = new Enemigo('Gato malvado', 3, 'gatoMalvado.jpg');
+    const enemigoPerroBobo = new Enemigo('Perro bobo', 2, 'perroBobo.jpg');
+    const enemigoBolaPelo = new Jefe('Bola de pelo', 1, 'bolaPelo.jpg');
+    const enemigoMiReflejo = new Enemigo('Mi reflejo', jugador.ataqueTotal, 'espejo.jpg');
+    const enemigoTransportin = new Enemigo('Transportín', 4, 'transportin.jpg');
+
+    arrayEnemigos = [enemigoBolaPelo, enemigoGatoMalvado, enemigoMiReflejo, enemigoPepino, enemigoPerroBobo,enemigoTransportin];
+
     escena.replaceChildren();
     mostrarEnemigos(escena, arrayEnemigos);
     escena.appendChild(continuarPelea);
