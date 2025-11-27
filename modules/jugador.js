@@ -87,7 +87,7 @@ export class Jugador {
      * Devuelve una presentación detallada del jugador.
      * @returns {string} Descripción del jugador.
      */
-    mostrarJugador() {
+    describirJugador() {
         return `
         😼 <strong>Nombre:</strong> ${this.nombre}<br>
         ❤️ <strong>Vida:</strong> ${this.vidaTotal}/${this.vidaMax}<br>

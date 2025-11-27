@@ -3,53 +3,25 @@ import { aplicarDescuentoPorRareza, rarezaRandom, descuentoRandom, actualizarInv
 import { batalla } from "./batalla.js";
 import { INVENTARIO_MAX } from "../constants.js";
 
-
-export function mostrarJugador(escena, jugador) {
-    const escena1 = document.createElement("div");
-    escena1.classList.add("scene-1-container");
-
-    const containerPersonaje = document.createElement("div");
-    containerPersonaje.classList.add("personaje");
-
-    const pPersonaje = document.createElement("p");
-    pPersonaje.innerHTML = "<em>PLAYER</em>";
-    const imgPersonaje = document.createElement("img");
-    imgPersonaje.src = "imagenes/prota.png";
-    imgPersonaje.classList.add("prota");
-
-    const containerParametros = document.createElement("div");
-    containerParametros.classList.add("parametros-container");
-
-    const pParametros = document.createElement("p");
-    pParametros.innerHTML = "<em>PARÁMETROS</em>";
-
-    const divParametros = document.createElement("div");
-    divParametros.innerHTML = jugador.mostrarJugador();
-    divParametros.classList.add("parametros");
-
-    // Primero los elementos hijos
-    containerPersonaje.appendChild(pPersonaje);
-    containerPersonaje.appendChild(imgPersonaje);
-
-    containerParametros.appendChild(pParametros);
-    containerParametros.appendChild(divParametros);
-
-    // Luego los contenedores a la escena
-    escena1.appendChild(containerPersonaje);
-    escena1.appendChild(containerParametros);
-
-    // Finalmente la escena al contenedor principal
-    escena.appendChild(escena1);
+function resetEscenas(){
 
 }
 
-export function mostrarMercado(escena, jugador) {
-    const escena2 = document.createElement("div");
-    escena2.classList.add("scene-2-container");
+export function mostrarJugador(jugador) {
+    const divParametros = document.getElementById("parametros-jugador");
+    const imgJugador = document.getElementById("img-jugador");
 
-    // Contenedor del mercado
-    const mercadoDiv = document.createElement("div");
-    mercadoDiv.classList.add("mercado");
+    divParametros.innerHTML = jugador.describirJugador();
+    imgJugador.src = "imagenes/" + jugador.avatar;
+}
+
+
+export function mostrarMercado(jugador) {
+    const escenaMercado = document.getElementById("escena-mercado-container");
+    const mercadoDiv = document.getElementById("mercado");
+
+    // Reset antes de imprimir productos
+    mercadoDiv.innerHTML = "";
 
     // Descuento aleatorio
     const rarezaAleatoria = rarezaRandom();
@@ -57,21 +29,10 @@ export function mostrarMercado(escena, jugador) {
     const mercadoConDescuento = aplicarDescuentoPorRareza(rarezaAleatoria, descuentoAleatorio);
 
     // Montar escena
-    escena2.appendChild(mercadoDiv);
+    escenaMercado.appendChild(mercadoDiv);
 
-    // --- INVENTARIO ---
-    const inventario = document.createElement("div"); 
-    inventario.id = "inventory-container";
-
-    //Crear 6 items para el inventario
-    for (let i = 0; i < INVENTARIO_MAX; i++) { 
-        const elemento = document.createElement("div"); 
-        elemento.classList.add("item"); 
-        inventario.appendChild(elemento); 
-    }
-
-    // Guardamos items en un array e inicializamos arrayInventario
-    // para pasarlo en el bucle a la función "actualizarInventario" disponible en mercado.js
+    // INVENTARIO: casillas ya existen en HTML
+    const inventario = document.getElementById("inventory-container");
     const items = inventario.querySelectorAll(".item");
     const arrayInventario = [];
 
@@ -157,21 +118,15 @@ export function mostrarMercado(escena, jugador) {
         mercadoDiv.appendChild(productoDiv);
     });
 
-    escena2.appendChild(inventario);
-    escena.appendChild(escena2);
+    escenaMercado.appendChild(inventario);
 }
 
-export function mostrarEnemigos(escena, arrayEnemigos) {
-    const escena4 = document.createElement("div");
-    escena4.classList.add("scene-4-container");
+export function mostrarEnemigos(arrayEnemigos) {
+    const escenaEnemigos = document.getElementById("escena-enemigos-container");
+    const enemigosDiv = document.getElementById("enemigos-container");
 
-    const pEnemigos = document.createElement('p');
-    pEnemigos.innerHTML = "<em>ENEMIGOS</em>";
-    escena4.appendChild(pEnemigos);
-
-    // Contenedor de enemigos
-    const enemigosDiv = document.createElement("div");
-    enemigosDiv.classList.add("enemigos");
+    // Reset enemigos antes de imprimir
+    enemigosDiv.innerHTML = "";
 
     arrayEnemigos.forEach(enemigo => {
         // Contenedor de cada enemigo
@@ -200,48 +155,24 @@ export function mostrarEnemigos(escena, arrayEnemigos) {
     });
 
     // Montar escena
-    escena4.appendChild(enemigosDiv);
-    escena.appendChild(escena4);
+    escenaEnemigos.appendChild(enemigosDiv);
 }
 
-export function pelear(escena, arrayEnemigos, jugador) {
-    const escena5 = document.createElement("div");
-    escena5.classList.add("scene-5-container");
+export function pelear(arrayEnemigos, jugador) {
+    const imgJugador = document.getElementById("img-jugador-pelea");
+    const imgEnemigo = document.getElementById("img-enemigo-pelea");
+    const pResultado = document.getElementById("resultado-pelea");
 
-    // Contenedor de pelea
-    const peleaDiv = document.createElement("div");
-    peleaDiv.classList.add("pelea");
-
-    // Busca un enemigoAleatorio al que enfrentarse
+    // enemigo aleatorio
     const i = Math.floor(Math.random() * arrayEnemigos.length);
     const enemigoAleatorio = arrayEnemigos[i];
 
-    const enemigoDiv = document.createElement("div");
-    enemigoDiv.classList.add("enemigoPeleaDiv");
-
-    const personajeDiv = document.createElement("div");
-    personajeDiv.classList.add("personajePeleaDiv");
-
-    const imgEnemigo = document.createElement("img");
+    // imágenes
+    imgJugador.src = "imagenes/" + jugador.avatar;
     imgEnemigo.src = "imagenes/" + enemigoAleatorio.avatar;
-    imgEnemigo.classList.add("imgEnemigo");
 
-    const imgPersonaje = document.createElement("img");
-    imgPersonaje.src = "imagenes/prota.png";
-    imgPersonaje.classList.add("prota");
-
-    personajeDiv.appendChild(imgPersonaje);
-    enemigoDiv.appendChild(imgEnemigo);
-    peleaDiv.appendChild(personajeDiv);
-    peleaDiv.appendChild(enemigoDiv);
-
+    // resultado batalla
     const resultado = batalla(jugador, enemigoAleatorio);
-    const pResultado = document.createElement("h2");
-    pResultado.classList.add('resultado');
     pResultado.innerHTML = resultado;
-
-    escena5.appendChild(pResultado);
-    escena5.appendChild(peleaDiv);
-    escena.appendChild(escena5);
 
 }

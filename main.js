@@ -3,62 +3,55 @@ import { Enemigo } from "./modules/enemigos.js";
 import { Jefe } from "./modules/jefe.js";
 import { calcularNivel } from "./modules/ranking.js";
 import { mostrarMercado, mostrarJugador, mostrarEnemigos, pelear } from "./modules/escenas.js";
-
-
-const escena = document.getElementsByClassName("scene")[0];
+import { showScene } from "./utils/scenes.js";
 
 const jugador = new Jugador('Simba');
 
+showScene("escena-jugador");
 // ---------------------------------- ESCENA JUGADOR --------------------------------------- //
-mostrarJugador(escena, jugador);
+mostrarJugador(jugador);
 
-const continuarMercado = document.createElement("button");
-continuarMercado.type = "button";
-continuarMercado.id = "continuarMercado";
-continuarMercado.innerHTML = "Continuar";
+// Crear botón para ir a mercado
+const escenaJugador = document.getElementById("escena-jugador");
+const boton_ir_mercado = document.createElement("button");
+boton_ir_mercado.id = "continuarMercado";
+boton_ir_mercado.type = "button";
+boton_ir_mercado.textContent = "Ir al mercado";
 
-escena.appendChild(continuarMercado);
+// Añadir botón al final de la escena
+escenaJugador.appendChild(boton_ir_mercado);
 
 // ---------------------------------- ESCENA MERCADO --------------------------------------- //
 
-
-const continuarCompra = document.createElement("button");
-continuarCompra.type = "button";
-continuarCompra.id = "continuarCompra";
-continuarCompra.innerHTML = "Comprar";
-
-continuarMercado.addEventListener("click", () => {
-    escena.replaceChildren();
-    mostrarMercado(escena, jugador);
-    escena.appendChild(continuarCompra);
+boton_ir_mercado.addEventListener("click", () => {
+    showScene("escena-mercado");
+    mostrarMercado(jugador);
 });
 
 // ------------------------- ESCENA JUGADOR CON NUEVO INVENTARIO --------------------------- //
+const boton_comprar_productos = document.getElementById("comprarProductos");
+const boton_conocer_enemigos = document.createElement("button");
 
-const continuarEnemigos = document.createElement("button");
-continuarEnemigos.type = "button";
-continuarEnemigos.id = "continuarEnemigos";
-continuarEnemigos.innerHTML = "Continuar";
+boton_comprar_productos.addEventListener("click", () => {
+    showScene("escena-jugador");
+    mostrarJugador(jugador);
 
-continuarCompra.addEventListener("click", () => {
-    escena.replaceChildren();
-    mostrarJugador(escena, jugador)
-    escena.appendChild(continuarEnemigos);
+    // Cambiar botón para ir a enemigos
+    boton_ir_mercado.remove();
+    boton_conocer_enemigos.id = "continuarEnemigos";
+    boton_conocer_enemigos.type = "button";
+    boton_conocer_enemigos.textContent = "Conocer enemigos";
+
+    // Añadir botón al final de la escena
+    escenaJugador.appendChild(boton_conocer_enemigos);
 });
-
-console.log(jugador.mostrarJugador())
 
 // ---------------------------------- ESCENA ENEMIGOS --------------------------------------- //
 
 
-const continuarPelea = document.createElement("button");
-continuarPelea.type = "button";
-continuarPelea.id = "continuarPelea";
-continuarPelea.innerHTML = "Iniciar batalla 1";
-
 let arrayEnemigos = [];
-continuarEnemigos.addEventListener("click", () => {
-
+boton_conocer_enemigos.addEventListener("click", () => {
+    showScene("escena-enemigos");
     const enemigoPepino = new Enemigo('Pepino', 5, 'pepino.jpg');
     const enemigoGatoMalvado = new Enemigo('Gato malvado', 3, 'gatoMalvado.jpg');
     const enemigoPerroBobo = new Enemigo('Perro bobo', 2, 'perroBobo.jpg');
@@ -66,74 +59,79 @@ continuarEnemigos.addEventListener("click", () => {
     const enemigoMiReflejo = new Enemigo('Mi reflejo', jugador.ataqueTotal, 'espejo.jpg');
     const enemigoTransportin = new Enemigo('Transportín', 4, 'transportin.jpg');
 
-    arrayEnemigos = [enemigoBolaPelo, enemigoGatoMalvado, enemigoMiReflejo, enemigoPepino, enemigoPerroBobo,enemigoTransportin];
+    arrayEnemigos = [enemigoBolaPelo, enemigoGatoMalvado, enemigoMiReflejo, enemigoPepino, 
+        enemigoPerroBobo, enemigoTransportin];
 
-    escena.replaceChildren();
-    mostrarEnemigos(escena, arrayEnemigos);
-    escena.appendChild(continuarPelea);
+    mostrarEnemigos(arrayEnemigos);
 });
 
 // ---------------------------------- ESCENAS PELEA --------------------------------------- //
 
-// PELEA 1
-const continuarPelea1 = document.createElement("button");
-continuarPelea1.type = "button";
-continuarPelea1.id = "continuarPelea1";
-continuarPelea1.innerHTML = "Iniciar batalla 2";
+//BOTON INICIAR PELEA 1
+const boton_inciar_pelea = document.getElementById("iniciarPelea");
 
-continuarPelea.addEventListener("click", () => {
-    escena.replaceChildren();
-    pelear(escena, arrayEnemigos, jugador);
-    escena.appendChild(continuarPelea1);
+// CREAR BOTONES DEL RESTO DE PELEAS
+const escenaPelea = document.getElementById("escena-pelea");
+
+// -------PELEA 2
+const boton_inciar_pelea2 = document.createElement("button");
+boton_inciar_pelea2.type = "button";
+boton_inciar_pelea2.id = "continuarPelea2";
+boton_inciar_pelea2.innerHTML = "Iniciar batalla 2";
+
+// -------PELEA 3
+const boton_inciar_pelea3 = document.createElement("button");
+boton_inciar_pelea3.type = "button";
+boton_inciar_pelea3.id = "continuarPelea3";
+boton_inciar_pelea3.innerHTML = "Iniciar batalla 3";
+
+// -------VER RESULTADOS
+const boton_ver_resultados = document.createElement("button");
+boton_ver_resultados.type = "button";
+boton_ver_resultados.id = "resultados";
+boton_ver_resultados.innerHTML = "Resultados";
+
+//================================ EVENTOS BOTONES PELEA ============================//
+
+// PELEA 1
+
+boton_inciar_pelea.addEventListener("click", () => {
+    showScene("escena-pelea");
+    pelear(arrayEnemigos, jugador);
+    escenaPelea.appendChild(boton_inciar_pelea2);
 });
 
 // PELEA 2
-const continuarPelea2 = document.createElement("button");
-continuarPelea2.type = "button";
-continuarPelea2.id = "continuarPelea2";
-continuarPelea2.innerHTML = "Iniciar batalla 3";
 
-continuarPelea1.addEventListener("click", () => {
-    escena.replaceChildren();
-    pelear(escena, arrayEnemigos, jugador);
-    escena.appendChild(continuarPelea2);
+boton_inciar_pelea2.addEventListener("click", () => {
+    boton_inciar_pelea2.remove();
+    showScene("escena-pelea");
+    pelear(arrayEnemigos, jugador);
+    escenaPelea.appendChild(boton_inciar_pelea3);
 });
 
 // PELEA 3
-const continuarPelea3 = document.createElement("button");
-continuarPelea3.type = "button";
-continuarPelea3.id = "continuarPelea3";
-continuarPelea3.innerHTML = "Resultados";
 
-continuarPelea2.addEventListener("click", () => {
-    escena.replaceChildren();
-    pelear(escena, arrayEnemigos, jugador);
-    escena.appendChild(continuarPelea3);
+boton_inciar_pelea3.addEventListener("click", () => {
+    boton_inciar_pelea3.remove();
+    showScene("escena-pelea");
+    pelear(arrayEnemigos, jugador);
+    escenaPelea.appendChild(boton_ver_resultados);
 });
 
 // ---------------------------------- ESCENA RESULTADO --------------------------------------- //
 
-const botonReload = document.createElement("button");
-botonReload.type = "button";
-botonReload.id = "botonReload";
-botonReload.innerHTML = "Volver a empezar";
-
-continuarPelea3.addEventListener("click", () => {
-    escena.replaceChildren();
+boton_ver_resultados.addEventListener("click", () => {
+    showScene("escena-ranking");    
     const resultado = calcularNivel(jugador);
-    const pPuntos = "<em>Puntos totales: </em> +" + jugador.puntos; +"ptos."
-    const pResultado = jugador.nombre + " es " + resultado + " 🔥 ";
-    const p = document.createElement('p');
-    const h2 = document.createElement('h2');
-    p.innerHTML = pPuntos;
-    h2.innerHTML = pResultado;
-    escena.appendChild(p);
-    escena.appendChild(h2);
-    escena.appendChild(botonReload);
+    const p = document.getElementById("p-puntos");
+    p.innerHTML = `<em>Puntos totales: </em> +${jugador.puntos} ptos.`;
+    const h2 = document.getElementById("p-resultado");
+    h2.innerHTML = resultado;
 });
 
 // ---------------------------------- BOTÓN VOLVER --------------------------------------- //
-
+const botonReload = document.getElementById("botonReload");
 botonReload.addEventListener("click", () => {
     location.reload();
 })

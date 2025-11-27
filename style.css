@@ -31,6 +31,10 @@ main {
     margin-top: -50px;
 }
 
+.scene.hidden {
+    display: none;
+}
+
 main>div {
     height: 100%;
     background-color: wheat;
@@ -61,9 +65,9 @@ button:hover {
     max-width: 900px;
 }
 
-/* ------------- ESCENA 1 --------------- */
+/* ------------- ESCENA JUGADOR --------------- */
 
-.scene-1-container {
+#escena-jugador-container {
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -87,9 +91,9 @@ button:hover {
     text-align: left;
 }
 
-/* ------------- ESCENA 2 --------------- */
+/* ------------- ESCENA MERCADO --------------- */
 
-.scene-2-container {
+#escena-mercado-container {
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -181,7 +185,7 @@ button:hover {
     border-radius: 20px;
 }
 
-.scene-4-container {
+#escena-enemigos-container {
     display: flex;
     flex-direction: column;
     gap: 3rem;
