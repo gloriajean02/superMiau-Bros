@@ -8,12 +8,16 @@ import { PRODUCTOS_MERCADO } from "../constants.js";
  */
 
 /**
- * Filtra los productos según su rareza.
- * @param {string} rareza - Rareza que se desea buscar (por ejemplo: "Épica", "Rara").
- * @returns {mercado[]} Lista de productos que coinciden con la rareza indicada.
+ * Filtra un array de productos (ya con descuentos) por rareza.
+ * 
+ * @param {Producto[]} mercadoConDescuento - Mercado ya procesado con descuentos.
+ * @param {string} rarezaFiltro - Rareza: "comun", "raro", "epico" o "" (todos).
+ * @returns {Producto[]} Productos filtrados.
  */
-export function filtrarPorRareza(rareza) { // No hace falta introducir `productos`, puesto que se exporta como constante y puede accederse a ella desde fuera de la clase.
-    return PRODUCTOS_MERCADO.filter(producto => producto.rareza === rareza);
+export function filtrarPorRarezaMercado(mercadoConDescuento, rarezaFiltro = "") {
+    return rarezaFiltro === "" 
+        ? mercadoConDescuento 
+        : mercadoConDescuento.filter(producto => producto.rareza === rarezaFiltro);
 }
 
 /**

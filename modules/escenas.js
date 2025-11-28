@@ -1,5 +1,5 @@
 
-import { aplicarDescuentoPorRareza, rarezaRandom, descuentoRandom, actualizarInventario } from "./mercado.js";
+import { aplicarDescuentoPorRareza, rarezaRandom, descuentoRandom, actualizarInventario, filtrarPorRarezaMercado } from "./mercado.js";
 import { batalla } from "./batalla.js";
 import { INVENTARIO_MAX } from "../constants.js";
 
@@ -28,7 +28,7 @@ export function mostrarJugador(jugador) {
  * 
  * @param {Jugador} jugador - Jugador con inventario y método añadirProducto().
  */
-export function mostrarMercado(jugador) {
+export function mostrarMercado(jugador, rarezaFiltro = "") {
     const escenaMercado = document.getElementById("escena-mercado-container");
     const mercadoDiv = document.getElementById("mercado");
 
@@ -40,6 +40,8 @@ export function mostrarMercado(jugador) {
     const descuentoAleatorio = descuentoRandom();
     const mercadoConDescuento = aplicarDescuentoPorRareza(rarezaAleatoria, descuentoAleatorio);
 
+    // FILTRAR por rareza seleccionada
+    const mercadoFiltrado = filtrarPorRarezaMercado(mercadoConDescuento, rarezaFiltro);
     // Montar escena
     escenaMercado.appendChild(mercadoDiv);
 
@@ -49,7 +51,7 @@ export function mostrarMercado(jugador) {
     const arrayInventario = [];
 
     // --- MERCADO ---
-    mercadoConDescuento.forEach(producto => {
+    mercadoFiltrado.forEach(producto => {
         const productoDiv = document.createElement("div");
 
         productoDiv.classList.add("producto");

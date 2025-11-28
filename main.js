@@ -22,10 +22,19 @@ escenaJugador.appendChild(boton_ir_mercado);
 
 // ---------------------------------- ESCENA MERCADO --------------------------------------- //
 
+const selectRareza = document.getElementById("rareza");
+
+// Mostrar mercado completo la primera vez
 boton_ir_mercado.addEventListener("click", () => {
-    showScene("escena-mercado");
     mostrarMercado(jugador);
+    showScene("escena-mercado");
 });
+
+// Filtrar mercado al cambiar la rareza
+selectRareza.addEventListener("change", () => {
+    mostrarMercado(jugador, selectRareza.value);
+});
+
 
 // ------------------------- ESCENA JUGADOR CON NUEVO INVENTARIO --------------------------- //
 const boton_comprar_productos = document.getElementById("comprarProductos");
