@@ -2,18 +2,22 @@ import { Jefe } from "./jefe.js";
 import { PUNTOS_BASE_VICTORIA } from "../constants.js";
 
 /**
- * Módulo de Batalla y Nivel
+ * Módulo de Batalla
  * ----------------------------
  * Gestiona el sistema de combate entre jugador y enemigos
- * y muestra si el jugador es Rookie o Pro.
  */
 
 /**
- * Simula una batalla entre un jugador y un enemigo.
- * Si el jugador gana, obtiene 50 puntos.
- * @param {Jugador} jugador - Jugador participante.
- * @param {Enemigo} enemigo - Enemigo a combatir.
- * @returns {string} Resultado con el nombre del ganador y los puntos ganados.
+ * Simula una batalla por turnos entre un jugador y un enemigo.
+ * Cada turno se decide aleatoriamente quién ataca primero.
+ * El jugador gana puntos base más daño del enemigo recibido.
+ * Si es un jefe, aplica multiplicador de puntos adicional.
+  * 
+ * @param {Jugador} jugador - Instancia del jugador con vidaTotal, ataqueTotal, defensaTotal y métodos ganarBatalla().
+ * @param {Enemigo|Jefe} enemigo - Instancia del enemigo con vida y ataque, o Jefe con multiplicarDmg().
+ * @returns {string} Mensaje con el ganador y puntos obtenidos en formato "Ganador: [nombre], Puntos ganados: +[pts] pts".
+ * @example
+ * batalla(jugador, enemigo); // "Ganador: Simba, Puntos ganados: +125 pts"
  */
 export function batalla(jugador, enemigo) {
     let vidaJugador = jugador.vidaTotal;

@@ -78,6 +78,10 @@ export class Jugador {
         return Math.min(total, this.vidaMax);;
     }
 
+    /**
+     * Suma puntos tras ganar una batalla y recupera vida.
+     * @param {number} puntos - Puntos ganados en la batalla.
+     */
     ganarBatalla(puntos) {
         this.puntos += puntos;
         this.vida += 200;

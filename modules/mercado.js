@@ -1,4 +1,4 @@
-import { Producto } from "./producto.js";
+import { PRODUCTOS_MERCADO } from "../constants.js";
 
 /**
  * Módulo de Mercado
@@ -6,14 +6,6 @@ import { Producto } from "./producto.js";
  * Genera objetos de la clase Producto para
  * llenar el mercado.
  */
-export const mercado = [
-    new Producto('Poción 7 vidas', 120.50, 'epico', 'consumible', { vida: 700 }, 'bolaLana.jpg'),
-    new Producto('Lata de atún legendario', 25.60, 'raro', 'consumible', { vida: 200 }, 'sigiloso.jpg'),
-    new Producto('Caja de cartón', 3, 'comun', 'armadura', { defensa: 2 }, 'trepador.jpg'),
-    new Producto('Garras afiladas', 20.80, 'comun', 'arma', { ataque: 5 }, 'garras.png'),
-    new Producto('Colmillos tuneados', 100, 'raro', 'armadura', { defensa: 10 }, 'dientes.png'),
-    new Producto('Cola-Látigo', 80.20, 'raro', 'arma', { ataque: 8 }, 'garras.png'),
-]
 
 /**
  * Filtra los productos según su rareza.
@@ -21,9 +13,8 @@ export const mercado = [
  * @returns {mercado[]} Lista de productos que coinciden con la rareza indicada.
  */
 export function filtrarPorRareza(rareza) { // No hace falta introducir `productos`, puesto que se exporta como constante y puede accederse a ella desde fuera de la clase.
-    return mercado.filter(producto => producto.rareza === rareza);
+    return PRODUCTOS_MERCADO.filter(producto => producto.rareza === rareza);
 }
-
 
 /**
  * Genera un porcentaje de descuento aleatorio para el mercado.
@@ -37,7 +28,7 @@ export function descuentoRandom() {
     return Math.floor(Math.random() * 10) *10 + 10;
 };
 
-    /**
+/**
  * Genera una rareza aleatoria de producto.
  * Se usa para determinar qué tipo de productos recibirán descuentos o ventajas aleatorias.
  * Los valores posibles son:
@@ -64,7 +55,7 @@ export function rarezaRandom() {
  */
 export function aplicarDescuentoPorRareza(rareza, porcentaje) {
     //Debe ser un map para poder transdormar los elementos y devolver un array con los cambios
-    return mercado.map(producto =>
+    return PRODUCTOS_MERCADO.map(producto =>
         producto.rareza === rareza ? producto.aplicarDescuento(porcentaje) : producto
     );
 }
@@ -78,6 +69,12 @@ export function describirProducto(producto) {
     return producto.mostrarProducto();
 }
 
+/**
+ * Actualiza visualmente las casillas del inventario con los productos actuales.
+ * 
+ * @param {NodeListOf<HTMLElement>} items - Nodos DOM de las casillas del inventario.
+ * @param {Producto[]} arrayInventario - Array de productos actuales en inventario.
+ */
 export function actualizarInventario(items, arrayInventario) {
         items.forEach((hueco, i) => {
             hueco.innerHTML = ""; 

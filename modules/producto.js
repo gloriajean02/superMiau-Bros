@@ -15,14 +15,14 @@ export class Producto {
     imagen;
 
     /**
-   * Crea una nueva instancia de Producto.
-   * @param {string} nombre - Nombre del producto.
-   * @param {number} precio - Precio base del producto.
-   * @param {string} rareza - Nivel de rareza ("común", "raro", "épico").
-   * @param {string} tipo - Tipo de producto ("arma", "armadura", "consumible").
-   * @param {Object} bonus - Objeto con los bonus del producto, por ejemplo { ataque: 5, defensa: 2 }.
-   * @param {string} imagen - Nombre de la imagen de producto, es el mismo que el nombre del producto pero con _
-   */
+     * Crea una nueva instancia de Producto.
+     * @param {string} nombre - Nombre del producto.
+     * @param {number} precio - Precio base del producto.
+     * @param {string} rareza - Nivel de rareza ("común", "raro", "épico").
+     * @param {string} tipo - Tipo de producto ("arma", "armadura", "consumible").
+     * @param {Object} bonus - Objeto con los bonus del producto, por ejemplo { ataque: 5, defensa: 2 }.
+     * @param {string} imagen - Nombre de la imagen de producto, es el mismo que el nombre del producto pero con _
+     */
     constructor(nombre, precio, rareza, tipo, bonus, imagen) {
     this.nombre = nombre;
     this.precio = precio;
@@ -32,6 +32,10 @@ export class Producto {
     this.imagen = imagen;
     }
 
+    /**
+     * Formatea el precio a Euros a través de la constante EUR.
+     * @returns {string} Precio formateado en Euros.
+     */
     get precioEuros(){
         return EUR.format(this.precio);
     }

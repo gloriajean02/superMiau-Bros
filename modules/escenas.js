@@ -3,10 +3,16 @@ import { aplicarDescuentoPorRareza, rarezaRandom, descuentoRandom, actualizarInv
 import { batalla } from "./batalla.js";
 import { INVENTARIO_MAX } from "../constants.js";
 
-function resetEscenas(){
+/**
+ * Módulo de Renderizado de UI del Juego.
+ * Gestiona la visualización del jugador, mercado, enemigos y batallas en el DOM.
+ */
 
-}
-
+/**
+ * Actualiza la visualización de los parámetros y avatar del jugador.
+ * 
+ * @param {Jugador} jugador - Instancia del jugador con métodos describirJugador() y propiedad avatar.
+ */
 export function mostrarJugador(jugador) {
     const divParametros = document.getElementById("parametros-jugador");
     const imgJugador = document.getElementById("img-jugador");
@@ -15,7 +21,13 @@ export function mostrarJugador(jugador) {
     imgJugador.src = "imagenes/" + jugador.avatar;
 }
 
-
+/**
+ * Renderiza el mercado con productos y el sistema de compra/venta.
+ * Aplica descuento aleatorio a productos de rareza específica.
+ * Gestiona el inventario visual y lógico del jugador.
+ * 
+ * @param {Jugador} jugador - Jugador con inventario y método añadirProducto().
+ */
 export function mostrarMercado(jugador) {
     const escenaMercado = document.getElementById("escena-mercado-container");
     const mercadoDiv = document.getElementById("mercado");
@@ -121,6 +133,11 @@ export function mostrarMercado(jugador) {
     escenaMercado.appendChild(inventario);
 }
 
+/**
+ * Renderiza la lista de enemigos disponibles en la escena.
+ * 
+ * @param {Enemigo[]} arrayEnemigos - Array de instancias de enemigos con propiedades nombre, ataque y avatar.
+ */
 export function mostrarEnemigos(arrayEnemigos) {
     const escenaEnemigos = document.getElementById("escena-enemigos-container");
     const enemigosDiv = document.getElementById("enemigos-container");
@@ -158,6 +175,13 @@ export function mostrarEnemigos(arrayEnemigos) {
     escenaEnemigos.appendChild(enemigosDiv);
 }
 
+/**
+ * Inicia una batalla aleatoria contra un enemigo del array.
+ * Actualiza imágenes de combate y muestra resultado.
+ * 
+ * @param {Enemigo[]} arrayEnemigos - Lista de enemigos disponibles.
+ * @param {Jugador} jugador - Jugador participante en la batalla.
+ */
 export function pelear(arrayEnemigos, jugador) {
     const imgJugador = document.getElementById("img-jugador-pelea");
     const imgEnemigo = document.getElementById("img-enemigo-pelea");

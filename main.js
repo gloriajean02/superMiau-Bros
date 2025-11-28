@@ -1,6 +1,5 @@
 import { Jugador } from "./modules/jugador.js";
-import { Enemigo } from "./modules/enemigos.js";
-import { Jefe } from "./modules/jefe.js";
+import { ENEMIGOS_DISPONIBLES } from "./constants.js";
 import { calcularNivel } from "./modules/ranking.js";
 import { mostrarMercado, mostrarJugador, mostrarEnemigos, pelear } from "./modules/escenas.js";
 import { showScene } from "./utils/scenes.js";
@@ -49,20 +48,13 @@ boton_comprar_productos.addEventListener("click", () => {
 // ---------------------------------- ESCENA ENEMIGOS --------------------------------------- //
 
 
-let arrayEnemigos = [];
 boton_conocer_enemigos.addEventListener("click", () => {
     showScene("escena-enemigos");
-    const enemigoPepino = new Enemigo('Pepino', 5, 'pepino.jpg');
-    const enemigoGatoMalvado = new Enemigo('Gato malvado', 3, 'gatoMalvado.jpg');
-    const enemigoPerroBobo = new Enemigo('Perro bobo', 2, 'perroBobo.jpg');
-    const enemigoBolaPelo = new Jefe('Bola de pelo', 1, 'bolaPelo.jpg');
-    const enemigoMiReflejo = new Enemigo('Mi reflejo', jugador.ataqueTotal, 'espejo.jpg');
-    const enemigoTransportin = new Enemigo('Transportín', 4, 'transportin.jpg');
-
-    arrayEnemigos = [enemigoBolaPelo, enemigoGatoMalvado, enemigoMiReflejo, enemigoPepino, 
-        enemigoPerroBobo, enemigoTransportin];
-
-    mostrarEnemigos(arrayEnemigos);
+    
+    // Mi reflejo copia ataque del jugador en runtime
+    ENEMIGOS_DISPONIBLES[4].ataque = jugador.ataqueTotal;
+    
+    mostrarEnemigos(ENEMIGOS_DISPONIBLES);
 });
 
 // ---------------------------------- ESCENAS PELEA --------------------------------------- //
@@ -97,7 +89,7 @@ boton_ver_resultados.innerHTML = "Resultados";
 
 boton_inciar_pelea.addEventListener("click", () => {
     showScene("escena-pelea");
-    pelear(arrayEnemigos, jugador);
+    pelear(ENEMIGOS_DISPONIBLES, jugador);
     escenaPelea.appendChild(boton_inciar_pelea2);
 });
 
@@ -106,7 +98,7 @@ boton_inciar_pelea.addEventListener("click", () => {
 boton_inciar_pelea2.addEventListener("click", () => {
     boton_inciar_pelea2.remove();
     showScene("escena-pelea");
-    pelear(arrayEnemigos, jugador);
+    pelear(ENEMIGOS_DISPONIBLES, jugador);
     escenaPelea.appendChild(boton_inciar_pelea3);
 });
 
@@ -115,7 +107,7 @@ boton_inciar_pelea2.addEventListener("click", () => {
 boton_inciar_pelea3.addEventListener("click", () => {
     boton_inciar_pelea3.remove();
     showScene("escena-pelea");
-    pelear(arrayEnemigos, jugador);
+    pelear(ENEMIGOS_DISPONIBLES, jugador);
     escenaPelea.appendChild(boton_ver_resultados);
 });
 
