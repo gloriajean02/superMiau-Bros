@@ -1,6 +1,6 @@
 import { Producto } from "./modules/producto.js";
-import { Enemigo } from "../modules/enemigos.js";
-import { Jefe } from "../modules/jefe.js";
+import { Enemigo } from "./modules/enemigos.js";
+import { Jefe } from "./modules/jefe.js";
 
 
 /**

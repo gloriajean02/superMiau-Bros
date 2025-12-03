@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "jsdoc": "^4.0.5",
+    "rimraf": "^6.1.2"
+  },
+  "scripts": {
+    "docs": "jsdoc -c jsdoc.json",
+    "clean:docs": "rimraf docs"
+  }
+}
