@@ -59,15 +59,10 @@ export function batalla(jugador, enemigo) {
 }
 
 //Activa la animación
-export async function iniciarPelea() {
-    const pelea = document.querySelector('.pelea');
-    pelea.classList.remove('activa');
-    //delay para que se resetee la escena
-    await new Promise(resolve => {
-        setTimeout(resolve, 10);
-    });
-    
-    pelea.classList.add('activa');
+export function iniciarPelea() { 
+        const pelea = document.querySelector('.pelea');
+        pelea.classList.remove('activa');
+        pelea.classList.add('activa');
 }
 
 
