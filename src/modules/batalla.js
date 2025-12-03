@@ -20,6 +20,7 @@ import { PUNTOS_BASE_VICTORIA } from "../constants.js";
  * batalla(jugador, enemigo); // "Ganador: Simba, Puntos ganados: +125 pts"
  */
 export function batalla(jugador, enemigo) {
+    
     let vidaJugador = jugador.vidaTotal;
     let vidaEnemigo = enemigo.vida;
 
@@ -56,6 +57,17 @@ export function batalla(jugador, enemigo) {
     return `Ganador: ${ganaJugador ? jugador.nombre : enemigo.nombre}, Puntos ganados: +${puntosGanados} pts`;
 
 }
+
+//Activa la animación
+export function iniciarPelea() {
+    const pelea = document.querySelector('.pelea');
+    pelea.classList.remove('activa');
+    //delay para que se resetee la escena
+    setTimeout(() => {
+        pelea.classList.add('activa');
+    }, 50);
+}
+
 
 
 

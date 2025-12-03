@@ -3,6 +3,7 @@ import { ENEMIGOS_DISPONIBLES } from "./constants.js";
 import { calcularNivel } from "./modules/ranking.js";
 import { mostrarMercado, mostrarJugador, mostrarEnemigos, pelear } from "./modules/escenas.js";
 import { showScene } from "./utils/scenes.js";
+import { iniciarPelea } from "./modules/batalla.js";
 
 const jugador = new Jugador('Simba');
 
@@ -91,6 +92,7 @@ boton_ver_resultados.innerHTML = "Resultados";
 // PELEA 1
 
 boton_inciar_pelea.addEventListener("click", () => {
+    iniciarPelea();
     showScene("escena-pelea");
     pelear(ENEMIGOS_DISPONIBLES, jugador);
     escenaPelea.appendChild(boton_inciar_pelea2);
@@ -99,6 +101,7 @@ boton_inciar_pelea.addEventListener("click", () => {
 // PELEA 2
 
 boton_inciar_pelea2.addEventListener("click", () => {
+    iniciarPelea();
     boton_inciar_pelea2.remove();
     showScene("escena-pelea");
     pelear(ENEMIGOS_DISPONIBLES, jugador);
@@ -108,6 +111,7 @@ boton_inciar_pelea2.addEventListener("click", () => {
 // PELEA 3
 
 boton_inciar_pelea3.addEventListener("click", () => {
+    iniciarPelea();
     boton_inciar_pelea3.remove();
     showScene("escena-pelea");
     pelear(ENEMIGOS_DISPONIBLES, jugador);

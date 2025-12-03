@@ -8,6 +8,16 @@
  * @returns {string} Nivel del jugador.
  */
 export function calcularNivel(jugador, umbral = 250) {
+    resultadoFinal();
     const jugadorPro = jugador.puntos >= umbral;
     return jugadorPro ? "VETERANO" : "NOVATO";
+}
+
+//Función para activar el confetti
+function resultadoFinal() {
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+    });
 }
