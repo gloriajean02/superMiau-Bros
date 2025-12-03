@@ -30,12 +30,6 @@ boton_ir_mercado.addEventListener("click", () => {
     showScene("escena-mercado");
 });
 
-// Filtrar mercado al cambiar la rareza
-selectRareza.addEventListener("change", () => {
-    mostrarMercado(jugador, selectRareza.value);
-});
-
-
 // ------------------------- ESCENA JUGADOR CON NUEVO INVENTARIO --------------------------- //
 const boton_comprar_productos = document.getElementById("comprarProductos");
 const boton_conocer_enemigos = document.createElement("button");

@@ -56,12 +56,12 @@ export const MULTIPLICADOR_JEFE_DEFECTO = 1.25;
  * @constant {Producto[]}
  */
 export const PRODUCTOS_MERCADO = [
-    new Producto('Poción 7 vidas', 120.50, 'epico', 'consumible', { vida: 700 }, 'bolaLana.jpg'),
-    new Producto('Lata de atún legendario', 25.60, 'raro', 'consumible', { vida: 200 }, 'sigiloso.jpg'),
-    new Producto('Caja de cartón', 3, 'comun', 'armadura', { defensa: 2 }, 'trepador.jpg'),
-    new Producto('Garras afiladas', 20.80, 'comun', 'arma', { ataque: 5 }, 'garras.png'),
-    new Producto('Colmillos tuneados', 100, 'raro', 'armadura', { defensa: 10 }, 'dientes.png'),
-    new Producto('Cola-Látigo', 80.20, 'raro', 'arma', { ataque: 8 }, 'garras.png'),
+    new Producto('Poción 7 vidas', 120.50, 'epico', 'consumible', { vida: 700 }, 'pocion.svg'),
+    new Producto('Lata de atún legendario', 25.60, 'raro', 'consumible', { vida: 200 }, 'atun.svg'),
+    new Producto('Caja de cartón', 3, 'comun', 'armadura', { defensa: 2 }, 'caja.svg'),
+    new Producto('Garras afiladas', 20.80, 'comun', 'arma', { ataque: 5 }, 'garra.svg'),
+    new Producto('Colmillos tuneados', 100, 'raro', 'armadura', { defensa: 10 }, 'colmillos.svg'),
+    new Producto('Cola-Látigo', 80.20, 'raro', 'arma', { ataque: 8 }, 'cola-latigo.svg'),
 ];
 
 /**
@@ -71,12 +71,12 @@ export const PRODUCTOS_MERCADO = [
  * @constant {Enemigo[]}
  */
 export const ENEMIGOS_DISPONIBLES = [
-    new Enemigo('Pepino', 5, 'pepino.jpg'),
-    new Enemigo('Gato malvado', 3, 'gatoMalvado.jpg'),
-    new Enemigo('Perro bobo', 2, 'perroBobo.jpg'),
-    new Jefe('Bola de pelo', 1, 'bolaPelo.jpg'),  // Jefe con multiplicador
-    new Enemigo('Mi reflejo', 0, 'espejo.jpg'),  // Ataque dinámico en runtime
-    new Enemigo('Transportín', 4, 'transportin.jpg')
+    new Enemigo('Pepino', 5, 'pepino.svg'),
+    new Jefe('Gato malvado', 3, 'gato-malvado.svg'), // Jefe con multiplicador
+    new Enemigo('Ratón sabelotodo', 2, 'raton.svg'),
+    new Jefe('Gato fantasma', 1, 'fantasma.svg'),  // Jefe con multiplicador
+    new Enemigo('Mi reflejo', 0, 'reflejo.svg'),  // Ataque dinámico en runtime
+    new Enemigo('Transportín', 4, 'transportin.svg')
 ];
 
 
