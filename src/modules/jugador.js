@@ -1,3 +1,5 @@
+import { VIDA_MAX_JUGADOR, AVATAR_JUGADOR } from "../constants.js";
+
 /**
  * Clase Jugador
  * ----------------------------
@@ -9,6 +11,7 @@ export class Jugador {
     inventario;
     vidaMax;
     vida;
+    avatar;
 
     /**
      * Crea una nueva instancia de Jugador.
@@ -18,8 +21,9 @@ export class Jugador {
         this.nombre = nombre;
         this.puntos = 0;
         this.inventario = [];
-        this.vidaMax = 700;
-        this.vida = this.vidaMax;
+        this.vidaMax = VIDA_MAX_JUGADOR;
+        this.vida = 0;
+        this.avatar = AVATAR_JUGADOR;
     }
 
     /**
@@ -29,6 +33,7 @@ export class Jugador {
      */
     añadirProducto(producto) {
         this.inventario.push(structuredClone(producto));
+
     }
 
     /**
@@ -38,7 +43,7 @@ export class Jugador {
     get ataqueTotal() {
         let total = 0;
         this.inventario.forEach(producto => {
-            if (producto.bonus.ataque > 0) {
+            if (producto.bonus.ataque > 0 && producto.bonus.ataque != null) {
                 total += producto.bonus.ataque;
             }
         });
@@ -52,7 +57,7 @@ export class Jugador {
     get defensaTotal() {
         let total = 0;
         this.inventario.forEach(producto => {
-            if (producto.bonus.defensa > 0) {
+            if (producto.bonus.defensa > 0 && producto.bonus.defensa != null) {
                 total += producto.bonus.defensa;
             }
         });
@@ -60,13 +65,36 @@ export class Jugador {
     }
 
     /**
+     * Calcula el total de vida del jugador basado en los bonus de sus productos.
+     * @returns {number} Vidas totales. Si son más de la vida máxima, se setea a la máxima.
+     */
+    get vidaTotal() {
+        let total = 0;
+        this.inventario.forEach(producto => {
+            if (producto.bonus.vida > 0 && producto.bonus.vida != null) {
+                total += producto.bonus.vida;
+            }
+        });
+        return Math.min(total, this.vidaMax);;
+    }
+
+    /**
+     * Suma puntos tras ganar una batalla y recupera vida.
+     * @param {number} puntos - Puntos ganados en la batalla.
+     */
+    ganarBatalla(puntos) {
+        this.puntos += puntos;
+        this.vida += 200;
+    }
+
+    /**
      * Devuelve una presentación detallada del jugador.
      * @returns {string} Descripción del jugador.
      */
-    mostrarJugador() {
+    describirJugador() {
         return `
         😼 <strong>Nombre:</strong> ${this.nombre}<br>
-        ❤️ <strong>Vida:</strong> ${this.vida}/${this.vidaMax}<br>
+        ❤️ <strong>Vida:</strong> ${this.vidaTotal}/${this.vidaMax}<br>
         🎖 <strong>Puntos:</strong> ${this.puntos}<br>
         💅🏻 <strong>Ataque total:</strong> ${this.ataqueTotal}<br>
         😈 <strong>Defensa total:</strong> ${this.defensaTotal}<br>

@@ -1,20 +1,88 @@
 <!DOCTYPE html>
 <html lang='es'>
+
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>SuperMiau-Bros</title>
     <link rel='stylesheet' href="style.css">
-    <script type="module" src="main.js" defer></script>
+    <script type="module" src="src/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
     <header>
         <img src="imagenes/logo.png" class="logo" alt="SuperMiau-Bros">
     </header>
-    <main>  
-        <div class="scene">
+    <main>
+        <!-- Escena 1: Jugador -->
+        <div class="scene" id="escena-jugador">
+            <div id="escena-jugador-container">
+                <div class="personaje">
+                    <p><em>PLAYER</em></p>
+                    <img src="" id="img-jugador" class="prota" alt="Jugador">
+                </div>
+
+                <div class="parametros-container">
+                    <p><em>PARÁMETROS</em></p>
+                    <div id="parametros-jugador" class="parametros"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scene" id="escena-mercado">
+
+            <div id="escena-mercado-container">
+                <!-- Contenedor del mercado -->
+                <div id="mercado" class="mercado">
+                    <!-- Aquí JS insertará cada producto -->
+                </div>
+
+                <!-- Contenedor del inventario -->
+                <div id="inventory-container">
+                    <!-- Casillas fijas de inventario -->
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                    <div class="item"></div>
+                </div>
+            </div>
+            <button id="comprarProductos">Comprar</button>
+        </div>
+
+        <div class="scene" id="escena-enemigos">
+            <div id="escena-enemigos-container">
+                <p><em>ENEMIGOS</em></p>
+                <!-- Contenedor de enemigos -->
+                <div id="enemigos-container" class="enemigos">
+                    <!-- Aquí JS insertará cada enemigo -->
+                </div>
+            </div>
+            <button id="iniciarPelea">Inciar batallas</button>
+        </div>
+
+        <div class="scene" id="escena-pelea">
+            <h2 id="resultado-pelea" class="resultado"></h2>
+            <div class="pelea">
+                <div class="personajePeleaDiv">
+                    <img id="img-jugador-pelea" class="prota" alt="Jugador">
+                </div>
+                <div class="enemigoPeleaDiv">
+                    <img id="img-enemigo-pelea" class="imgEnemigo" alt="Enemigo">
+                </div>
+            </div>
+        </div>
+
+        <div class="scene" id="escena-ranking">
+            <p id="p-puntos"></p>
+            <h2 id="p-resultado"></h2>
+            <button id="botonReload" type="button">
+                Volver a empezar
+            </button>
         </div>
     </main>
 </body>
-</html>
 
+</html>
