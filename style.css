@@ -1,5 +1,5 @@
 :root {
-    /* ← VARIABLES DE COLOR */
+    /* VARIABLES DE COLOR */
     --primary-bg: slateblue;
     --card-bg: wheat;
     --border-color: #a52a2a;
@@ -68,7 +68,6 @@ button {
 }
 
 button:hover {
-    transform: scale(1.05);
     background-color: var(--button-hover);
     box-shadow: var(--shadow-hover);
 }
@@ -217,10 +216,6 @@ button:hover {
 
 .botonComprar {
     background-color: var(--buy-bg);
-}
-
-.botonComprar:hover {
-    background-color: #8b4513;
 }
 
 #inventory-container {
@@ -418,4 +413,9 @@ button:hover {
     0% { right: -15%; }
     50% { right: 25%; } /* Se cruzan en el centro */
     100% { right: 60%; } /* Termina posicionado */
+}
+
+/* ------------- ESCENA RANKING --------------- */
+#escena-ranking {
+    padding-top: 50px;
 }

@@ -65,7 +65,7 @@ export function iniciarPelea() {
     //delay para que se resetee la escena
     setTimeout(() => {
         pelea.classList.add('activa');
-    }, 50);
+    }, 10);
 }
 
 
