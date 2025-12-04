@@ -15,6 +15,34 @@
         <img src="imagenes/logo.png" class="logo" alt="SuperMiau-Bros">
     </header>
     <main>
+        <div class="scene" id="escena-formulario">
+            <form action="#">
+                <h1>PLAYER</h1>
+                <div class="inputContainer">
+                    <label>Nombre:</label>
+                    <input id="nombre-jugador" type="text" placeholder="Ej. Elias">
+                    <small></small>
+                </div>
+                <div class="inputContainer">
+                    <label>Ataque:</label>
+                    <input id="ataque" type="number" step="1" min="0" placeholder="0" value="0">
+                    <small></small>
+                </div>
+                <div class="inputContainer">
+                    <label>Defensa:</label>
+                    <input id="defensa" type="number" step="1" min="0" placeholder="0" value="0">
+                    <small></small>
+                </div>
+                <div class="inputContainer">
+                    <label>Vida:</label>
+                    <input id="vida" type="number" step="1" min="100" placeholder="100" value="100">
+                    <small></small>
+                </div>
+                <button id="empezar">Crear jugador</button>
+            </form>
+            
+
+        </div>
         <!-- Escena 1: Jugador -->
         <div class="scene" id="escena-jugador">
             <div id="escena-jugador-container">

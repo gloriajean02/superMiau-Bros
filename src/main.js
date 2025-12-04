@@ -4,12 +4,15 @@ import { calcularNivel } from "./modules/ranking.js";
 import { mostrarMercado, mostrarJugador, mostrarEnemigos, pelear } from "./modules/escenas.js";
 import { showScene } from "./utils/scenes.js";
 import { desactivarPelea, iniciarPelea } from "./modules/batalla.js";
+import { validarNombre, validarCantidadTotal, checkFullForm } from "./modules/registro.js";
 
-const jugador = new Jugador('Simba');
+const jugador = new Jugador();
 
-showScene("escena-jugador");
+showScene("escena-formulario");
+
+const boton_comenzar = document.getElementById("empezar");
+
 // ---------------------------------- ESCENA JUGADOR --------------------------------------- //
-mostrarJugador(jugador);
 
 // Crear botón para ir a mercado
 const escenaJugador = document.getElementById("escena-jugador");
@@ -18,14 +21,30 @@ boton_ir_mercado.id = "continuarMercado";
 boton_ir_mercado.type = "button";
 boton_ir_mercado.textContent = "Ir al mercado";
 
-// Añadir botón al final de la escena
-escenaJugador.appendChild(boton_ir_mercado);
+let inputNombreJugador = document.getElementById("nombre-jugador");
+let inputAtaque = document.getElementById("ataque");
+let inputDefensa = document.getElementById("defensa");
+let inputVida = document.getElementById("vida");
+
+boton_comenzar.addEventListener("click", () => {
+    checkFullForm();
+    if (validarNombre() && validarCantidadTotal()) {
+        jugador.ataque = inputAtaque.value;
+        jugador.nombre = inputNombreJugador.value;
+        jugador.defensa = inputDefensa.value;
+        jugador.vida = inputVida.value;
+        mostrarJugador(jugador);
+        showScene("escena-jugador");
+        // Añadir botón al final de la escena
+        escenaJugador.appendChild(boton_ir_mercado);
+    } else {
+        showScene("escena-formulario");
+    }
+})
 
 // ---------------------------------- ESCENA MERCADO --------------------------------------- //
 
-const selectRareza = document.getElementById("rareza");
-
-// Mostrar mercado completo la primera vez
+// Mostrar mercado 
 boton_ir_mercado.addEventListener("click", () => {
     mostrarMercado(jugador);
     showScene("escena-mercado");

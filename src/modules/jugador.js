@@ -9,7 +9,6 @@ export class Jugador {
     nombre;
     puntos;
     inventario;
-    vidaMax;
     vida;
     avatar;
 
@@ -17,12 +16,13 @@ export class Jugador {
      * Crea una nueva instancia de Jugador.
      * @param {string} nombre - Nombre del jugador.
      */
-    constructor(nombre) {
+    constructor(nombre, ataque = 0, defensa = 0, vida = 100) {
         this.nombre = nombre;
+        this.ataque = ataque;
+        this.defensa = defensa;
         this.puntos = 0;
         this.inventario = [];
-        this.vidaMax = VIDA_MAX_JUGADOR;
-        this.vida = 0;
+        this.vida = vida;
         this.avatar = AVATAR_JUGADOR;
     }
 
@@ -41,7 +41,7 @@ export class Jugador {
      * @returns {number} Puntos de ataque totales.
      */
     get ataqueTotal() {
-        let total = 0;
+        let total = this.ataque;
         this.inventario.forEach(producto => {
             if (producto.bonus.ataque > 0 && producto.bonus.ataque != null) {
                 total += producto.bonus.ataque;
@@ -55,7 +55,7 @@ export class Jugador {
      * @returns {number} Puntos de defensa totales.
      */
     get defensaTotal() {
-        let total = 0;
+        let total = this.defensa;
         this.inventario.forEach(producto => {
             if (producto.bonus.defensa > 0 && producto.bonus.defensa != null) {
                 total += producto.bonus.defensa;
@@ -69,13 +69,13 @@ export class Jugador {
      * @returns {number} Vidas totales. Si son más de la vida máxima, se setea a la máxima.
      */
     get vidaTotal() {
-        let total = 0;
+        let total = this.vida;
         this.inventario.forEach(producto => {
             if (producto.bonus.vida > 0 && producto.bonus.vida != null) {
                 total += producto.bonus.vida;
             }
         });
-        return Math.min(total, this.vidaMax);;
+        return total;
     }
 
     /**
@@ -94,7 +94,7 @@ export class Jugador {
     describirJugador() {
         return `
         😼 <strong>Nombre:</strong> ${this.nombre}<br>
-        ❤️ <strong>Vida:</strong> ${this.vidaTotal}/${this.vidaMax}<br>
+        ❤️ <strong>Vida:</strong> ${this.vidaTotal}<br>
         🎖 <strong>Puntos:</strong> ${this.puntos}<br>
         💅🏻 <strong>Ataque total:</strong> ${this.ataqueTotal}<br>
         😈 <strong>Defensa total:</strong> ${this.defensaTotal}<br>

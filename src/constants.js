@@ -86,3 +86,7 @@ export const ENEMIGOS_DISPONIBLES = [
  * @type {string}
  */
 export const AVATAR_JUGADOR = "prota.png";
+
+export const regexNombreJugador = /[A-Z][A-Za-zÁÉÍÓÚáéíóúÑñ\s]{1,20}$/;
+
+export const NOMBRE_INVALIDO = "Debe empezar por mayúsculas. Máx. 20 caracteres. Sólo se permiten letras y espacios en blanco.";
