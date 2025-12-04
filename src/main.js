@@ -29,10 +29,10 @@ let inputVida = document.getElementById("vida");
 boton_comenzar.addEventListener("click", () => {
     checkFullForm();
     if (validarNombre() && validarCantidadTotal()) {
-        jugador.ataque = inputAtaque.value;
+        jugador.ataque = parseInt(inputAtaque.value);
         jugador.nombre = inputNombreJugador.value;
-        jugador.defensa = inputDefensa.value;
-        jugador.vida = inputVida.value;
+        jugador.defensa = parseInt(inputDefensa.value);
+        jugador.vida = parseInt(inputVida.value);
         mostrarJugador(jugador);
         showScene("escena-jugador");
         // Añadir botón al final de la escena

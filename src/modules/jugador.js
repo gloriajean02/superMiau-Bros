@@ -11,6 +11,7 @@ export class Jugador {
     inventario;
     vida;
     avatar;
+    dinero;
 
     /**
      * Crea una nueva instancia de Jugador.
@@ -21,6 +22,7 @@ export class Jugador {
         this.ataque = ataque;
         this.defensa = defensa;
         this.puntos = 0;
+        this.dinero = 500;
         this.inventario = [];
         this.vida = vida;
         this.avatar = AVATAR_JUGADOR;

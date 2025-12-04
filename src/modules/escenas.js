@@ -43,11 +43,15 @@ export function mostrarMercado(jugador) {
     // Montar escena
     escenaMercado.appendChild(mercadoDiv);
 
+    const pDinero = document.getElementById("dinero");
+    pDinero.innerHTML = "<em>DINERO DEL JUGADOR:</em>"+jugador.dinero;
+
     // INVENTARIO: casillas ya existen en HTML
     const inventario = document.getElementById("inventory-container");
     const items = inventario.querySelectorAll(".item");
     const arrayInventario = [];
 
+    
     // --- MERCADO ---
     mercadoConDescuento.forEach(producto => {
         const productoDiv = document.createElement("div");
@@ -99,32 +103,40 @@ export function mostrarMercado(jugador) {
         comprarDiv.appendChild(botonComprar);
 
         botonComprar.addEventListener("click", () => {
-            if (arrayInventario.includes(producto)) {
-                // quitar del inventario y del jugador
-                botonComprar.innerHTML = 'Añadir';
-                productoDiv.style.backgroundColor = "";
-
-                const i = arrayInventario.findIndex(p => p === producto);
-                arrayInventario.splice(i, 1);
-
-                const j = jugador.inventario.findIndex(p => p === producto);
-                jugador.inventario.splice(j, 1);
+            let dineroSobrante = jugador.dinero - producto.precio;
+            if(dineroSobrante < producto.precio) {
+                alert("No tienes suficiente dinero para comprar este producto")
             } else {
-                // añadir al inventario y al jugador
-                if (arrayInventario.length >= INVENTARIO_MAX) {
-                    alert("Inventario lleno");
-                    return;
+                if (arrayInventario.includes(producto)) {
+                    // quitar del inventario y del jugador
+                    botonComprar.innerHTML = 'Añadir';
+                    productoDiv.style.backgroundColor = "";
+
+                    const i = arrayInventario.findIndex(p => p === producto);
+                    arrayInventario.splice(i, 1);
+
+                    const j = jugador.inventario.findIndex(p => p === producto);
+                    jugador.inventario.splice(j, 1);
+                } else {
+                    // añadir al inventario y al jugador
+                    if (arrayInventario.length >= INVENTARIO_MAX) {
+                        alert("Inventario lleno");
+                        return;
+                    }
+                    jugador.dinero -= producto.precio;
+                    pDinero.innerHTML = "<em>DINERO DEL JUGADOR:</em>"+jugador.dinero;
+                    botonComprar.innerHTML = 'Retirar';
+                    productoDiv.style.backgroundColor = "#d4fcd4";
+                    arrayInventario.push(producto);
+                    jugador.añadirProducto(producto);
+                    
                 }
-
-                botonComprar.innerHTML = 'Retirar';
-                productoDiv.style.backgroundColor = "#d4fcd4";
-                arrayInventario.push(producto);
-                jugador.añadirProducto(producto);
+                
+                //Función que actualiza las casillas de inventario
+                actualizarInventario(items, arrayInventario);
             }
-
-            //Función que actualiza las casillas de inventario
-            actualizarInventario(items, arrayInventario);
-        });
+                
+            });
 
         productoDiv.append(infoDiv, comprarDiv);
         mercadoDiv.appendChild(productoDiv);

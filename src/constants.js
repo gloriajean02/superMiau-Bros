@@ -56,12 +56,12 @@ export const MULTIPLICADOR_JEFE_DEFECTO = 1.25;
  * @constant {Producto[]}
  */
 export const PRODUCTOS_MERCADO = [
-    new Producto('Poción 7 vidas', 120.50, 'epico', 'consumible', { vida: 700 }, 'pocion.svg'),
-    new Producto('Lata de atún legendario', 25.60, 'raro', 'consumible', { vida: 200 }, 'atun.svg'),
-    new Producto('Caja de cartón', 3, 'comun', 'armadura', { defensa: 2 }, 'caja.svg'),
-    new Producto('Garras afiladas', 20.80, 'comun', 'arma', { ataque: 5 }, 'garra.svg'),
+    new Producto('Poción 7 vidas', 300, 'epico', 'consumible', { vida: 700 }, 'pocion.svg'),
+    new Producto('Lata de atún legendario', 150, 'raro', 'consumible', { vida: 200 }, 'atun.svg'),
+    new Producto('Caja de cartón', 100, 'comun', 'armadura', { defensa: 2 }, 'caja.svg'),
+    new Producto('Garras afiladas', 340, 'comun', 'arma', { ataque: 5 }, 'garra.svg'),
     new Producto('Colmillos tuneados', 100, 'raro', 'armadura', { defensa: 10 }, 'colmillos.svg'),
-    new Producto('Cola-Látigo', 80.20, 'raro', 'arma', { ataque: 8 }, 'cola-latigo.svg'),
+    new Producto('Cola-Látigo', 220, 'raro', 'arma', { ataque: 8 }, 'cola-latigo.svg'),
 ];
 
 /**
