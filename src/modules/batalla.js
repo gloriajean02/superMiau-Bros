@@ -20,7 +20,7 @@ import { PUNTOS_BASE_VICTORIA } from "../constants.js";
  * batalla(jugador, enemigo); // "Ganador: Simba, Puntos ganados: +125 pts"
  */
 export function batalla(jugador, enemigo) {
-    
+
     let vidaJugador = jugador.vidaTotal;
     let vidaEnemigo = enemigo.vida;
 
@@ -58,11 +58,30 @@ export function batalla(jugador, enemigo) {
 
 }
 
-//Activa la animación
-export function iniciarPelea() { 
-        const pelea = document.querySelector('.pelea');
+/**
+ * Desactiva la clase 'activa' del elemento con clase 'pelea' y espera a que termine la transición.
+ * Si el elemento no tiene la clase 'activa', se resuelve inmediatamente sin delay.
+ * 
+ * @async
+ * @returns {Promise<void>} Promise que se resuelve después del delay de 100ms o inmediatamente si no está activa.
+ * @example
+ * await desactivarPelea(); // Espera 100ms si estaba activa
+ */
+export async function desactivarPelea() {
+    const pelea = document.querySelector('.pelea');
+    if (pelea.classList.contains('activa')) {
         pelea.classList.remove('activa');
-        pelea.classList.add('activa');
+        await new Promise(resolve => setTimeout(resolve, 100)); 
+    }
+}
+
+/**
+ * Activa la animación del sistema de pelea agregando la clase 'activa' al elemento con clase 'pelea'.
+ */
+//Activa la animación
+export function iniciarPelea() {
+    const pelea = document.querySelector('.pelea');
+    pelea.classList.add('activa');
 }
 
 
