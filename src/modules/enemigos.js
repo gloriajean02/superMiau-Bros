@@ -17,6 +17,7 @@ export class Enemigo {
      * Crea una nueva instancia de Enemigo.
      * @param {string} nombre - Nombre del enemigo.
      * @param {number} ataque - Nivel de ataque del enemigo.
+     * @param {string} avatar - URL o ruta del avatar del enemigo.
      */
     constructor(nombre, ataque, avatar) {
         this.tipo = 'Enemigo';

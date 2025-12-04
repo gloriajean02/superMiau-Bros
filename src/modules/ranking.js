@@ -13,7 +13,10 @@ export function calcularNivel(jugador, umbral = 250) {
     return jugadorPro ? "VETERANO" : "NOVATO";
 }
 
-//Función para activar el confetti
+/**
+ * Activa una animación de confetti visual con 100 partículas.
+ * La dispersión de las partículas es de 70 grados y el origen vertical está en 0.6 del área visible.
+ */
 function resultadoFinal() {
     confetti({
         particleCount: 100,
