@@ -103,19 +103,20 @@ export function mostrarMercado(jugador) {
         comprarDiv.appendChild(botonComprar);
 
         botonComprar.addEventListener("click", () => {
-            let dineroSobrante = jugador.dinero - producto.precio;
-            if(dineroSobrante < producto.precio) {
+            if (jugador.dinero < producto.precio) {
                 alert("No tienes suficiente dinero para comprar este producto")
             } else {
                 if (arrayInventario.includes(producto)) {
-                    // quitar del inventario y del jugador
+                    // quitar del inventario y devolver el dinero
+                    jugador.dinero += producto.precio;
+                    pDinero.innerHTML = "<em>DINERO DEL JUGADOR:</em>" + jugador.dinero;
                     botonComprar.innerHTML = 'Añadir';
                     productoDiv.style.backgroundColor = "";
 
                     const i = arrayInventario.findIndex(p => p === producto);
                     arrayInventario.splice(i, 1);
 
-                    const j = jugador.inventario.findIndex(p => p === producto);
+                    const j = jugador.inventario.findIndex(p => p.nombre === producto.nombre);
                     jugador.inventario.splice(j, 1);
                 } else {
                     // añadir al inventario y al jugador

@@ -69,10 +69,8 @@ export function batalla(jugador, enemigo) {
  */
 export async function desactivarPelea() {
     const pelea = document.querySelector('.pelea');
-    if (pelea.classList.contains('activa')) {
-        pelea.classList.remove('activa');
-        await new Promise(resolve => setTimeout(resolve, 100)); 
-    }
+    pelea.classList.remove('activa');
+    void pelea.offsetWidth; // fuerza reflow síncrono para resetear la animación CSS
 }
 
 /**
